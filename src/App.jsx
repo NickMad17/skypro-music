@@ -1,11 +1,22 @@
 import "./App.css";
+import AudioPlayer from "./components/AudioPlayer";
+import Footer from "./components/Footer";
+import Navigation from "./components/Navigation";
+import SideBar from "./components/SideBar";
+import TrackList from "./components/TrackListComponent/TrackList";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p className="text">Здесь скоро будет Skypro.Music</p>
-      </header>
+    <div className="wrapper">
+      <div className="container">
+        <main className="main">
+          <Navigation />
+          <TrackList/>
+          <SideBar/>
+        </main>
+        <AudioPlayer />
+        <Footer/>
+      </div>
     </div>
   );
 }
