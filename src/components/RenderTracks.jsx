@@ -1,173 +1,66 @@
 import React from "react";
+import Track from "./Track";
 
-const TrackList = () => {
+const RenderTracks = () => {
+  // Вместо обьекта в будущем будет апи
+  const listTrack = [
+    {
+      id: 1,
+      name: "Guilt",
+      autor: "Nero",
+      albom: "Welcome Reality",
+      time: "4:44",
+    },
+    {
+      id: 2,
+      name: "Elektro",
+      autor: "Dynoro, Outwork, Mr. Gee",
+      albom: "Elektro",
+      time: "2:22",
+    },
+    {
+      id: 3,
+      name: "I’m Fire",
+      autor: "Ali Bakgor",
+      albom: "I’m Fire",
+      time: "2: 22",
+    },
+    {
+      id: 4,
+      name: "Non Stop",
+      feat: "(Remix)",
+      autor: "Стоункат, Psychopath",
+      albom: "Non Stop",
+      time: "4:12",
+    },
+    {
+      id: 5,
+      name: "Run Run (feat. AR/CO)",
+      feat: "(feat. AR/CO)",
+      autor: "Jaded, Will Clarke, AR/CO",
+      albom: "Run Run",
+      time: "2:54",
+    },
+  ];
+
   return (
-    <div className="main__centerblock centerblock">
-      <div className="centerblock__search search">
-        <svg className="search__svg">
-          <use href="img/icon/sprite.svg#icon-search"></use>
-        </svg>
-        <input
-          className="search__text"
-          type="search"
-          placeholder="Поиск"
-          name="search"
-        />
-      </div>
-      <h2 className="centerblock__h2">Треки</h2>
-      <div className="centerblock__filter filter">
-        <div className="filter__title">Искать по:</div>
-        <div className="filter__button button-author _btn-text">
-          исполнителю
-        </div>
-        <div className="filter__button button-year _btn-text">году выпуска</div>
-        <div className="filter__button button-genre _btn-text">жанру</div>
-      </div>
-      <div className="centerblock__content">
-        <div className="content__title playlist-title">
-          <div className="playlist-title__col col01">Трек</div>
-          <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-          <div className="playlist-title__col col03">АЛЬБОМ</div>
-          <div className="playlist-title__col col04">
-            <svg className="playlist-title__svg" alt="time">
-              <use href="img/icon/sprite.svg#icon-watch"></use>
-            </svg>
-          </div>
-        </div>
-        <div className="content__playlist playlist">
-          <div className="playlist__item">
-            <div className="playlist__track track">
-              <div className="track__title">
-                <div className="track__title-image">
-                  <svg className="track__title-svg" alt="music">
-                    <use href="img/icon/sprite.svg#icon-note"></use>
-                  </svg>
-                </div>
-                <div className="track__title-text">
-                  <a className="track__title-link" href="http://">
-                    Guilt <span className="track__title-span"></span>
-                  </a>
-                </div>
-              </div>
-              <div className="track__author">
-                <a className="track__author-link" href="http://">
-                  Nero
-                </a>
-              </div>
-              <div className="track__album">
-                <a className="track__album-link" href="http://">
-                  Welcome Reality
-                </a>
-              </div>
-              <div className="track__time">
-                <svg className="track__time-svg" alt="time">
-                  <use href="img/icon/sprite.svg#icon-like"></use>
-                </svg>
-                <span className="track__time-text">4:44</span>
-              </div>
-            </div>
-          </div>
+    <div className="content__playlist playlist">
+      {/* ____________________________________________________________ */}
 
-          <div className="playlist__item">
-            <div className="playlist__track track">
-              <div className="track__title">
-                <div className="track__title-image">
-                  <svg className="track__title-svg" alt="music">
-                    <use href="img/icon/sprite.svg#icon-note"></use>
-                  </svg>
-                </div>
-                <div className="track__title-text">
-                  <a className="track__title-link" href="http://">
-                    Elektro <span className="track__title-span"></span>
-                  </a>
-                </div>
-              </div>
-              <div className="track__author">
-                <a className="track__author-link" href="http://">
-                  Dynoro, Outwork, Mr. Gee
-                </a>
-              </div>
-              <div className="track__album">
-                <a className="track__album-link" href="http://">
-                  Elektro
-                </a>
-              </div>
-              <div className="track__time">
-                <svg className="track__time-svg" alt="time">
-                  <use href="img/icon/sprite.svg#icon-like"></use>
-                </svg>
-                <span className="track__time-text">2:22</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="playlist__item">
-            <div className="playlist__track track">
-              <div className="track__title">
-                <div className="track__title-image">
-                  <svg className="track__title-svg" alt="music">
-                    <use href="img/icon/sprite.svg#icon-note"></use>
-                  </svg>
-                </div>
-                <div className="track__title-text">
-                  <a className="track__title-link" href="http://">
-                    I’m Fire <span className="track__title-span"></span>
-                  </a>
-                </div>
-              </div>
-              <div className="track__author">
-                <a className="track__author-link" href="http://">
-                  Ali Bakgor
-                </a>
-              </div>
-              <div className="track__album">
-                <a className="track__album-link" href="http://">
-                  I’m Fire
-                </a>
-              </div>
-              <div className="track__time">
-                <svg className="track__time-svg" alt="time">
-                  <use href="img/icon/sprite.svg#icon-like"></use>
-                </svg>
-                <span className="track__time-text">2:22</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="playlist__item">
-            <div className="playlist__track track">
-              <div className="track__title">
-                <div className="track__title-image">
-                  <svg className="track__title-svg" alt="music">
-                    <use href="img/icon/sprite.svg#icon-note"></use>
-                  </svg>
-                </div>
-                <div className="track__title-text">
-                  <a className="track__title-link" href="http://">
-                    Non Stop
-                    <span className="track__title-span">(Remix)</span>
-                  </a>
-                </div>
-              </div>
-              <div className="track__author">
-                <a className="track__author-link" href="http://">
-                  Стоункат, Psychopath
-                </a>
-              </div>
-              <div className="track__album">
-                <a className="track__album-link" href="http://">
-                  Non Stop
-                </a>
-              </div>
-              <div className="track__time">
-                <svg className="track__time-svg" alt="time">
-                  <use href="img/icon/sprite.svg#icon-like"></use>
-                </svg>
-                <span className="track__time-text">4:12</span>
-              </div>
-            </div>
-          </div>
-
+      {listTrack.map((track) => {
+        console.log(track);
+        return (
+          <Track
+            key={track.id}
+            name={track.name}
+            autor={track.autor}
+            albom={track.albom}
+            time={track.time}
+            feat={track.feat}
+          />
+        );
+      })}
+      {/* 
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
@@ -599,11 +492,9 @@ const TrackList = () => {
                 <span className="track__time-text"></span>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </div> */}
     </div>
   );
 };
 
-export default TrackList;
+export default RenderTracks;

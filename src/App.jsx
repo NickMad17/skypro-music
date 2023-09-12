@@ -3,7 +3,7 @@ import AudioPlayer from "./components/AudioPlayer";
 import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
 import SideBar from "./components/SideBar";
-import TrackList from "./components/TrackListComponent/TrackList";
+import TrackList from "./components/TrackList";
 
 function App() {
   return (
