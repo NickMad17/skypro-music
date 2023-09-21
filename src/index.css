@@ -217,6 +217,7 @@ body {
 }
 
 .centerblock__filter {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -889,3 +890,64 @@ body {
   padding: 0;
 }
 
+/*---------------track-list-nav-------------*/
+
+.pop-up__text{
+  transition: color 0.3s;
+  font-size: 16px ;
+}
+
+.pop-up__text:hover{
+  color: #ad61ff;
+}
+
+.autor{
+  position: absolute;
+  min-width: 228px;
+  top: 50px;
+  left: 80px;
+  z-index: 400;
+  padding: 20px 15px;
+  border-radius: 20px;
+  border: #ffffff 1px solid;
+  background: #313131;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.year{
+  position: absolute;
+  min-width: 228px;
+  top: 50px;
+  left: 230px;
+  z-index: 400;
+  padding: 20px 15px;
+  border-radius: 20px;
+  border: #ffffff 1px solid;
+  background: #313131;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.genre{
+  position: absolute;
+  min-width: 228px;
+  top: 50px;
+  left: 380px;
+  z-index: 400;
+  padding: 20px 15px;
+  border-radius: 20px;
+  border: #ffffff 1px solid;
+  background: #313131;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-active{
+  color: #ad61ff;
+  border-color: #ad61ff;
+}
