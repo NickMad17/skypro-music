@@ -1,21 +1,20 @@
-import "./App.css";
-import AudioPlayer from "./components/AudioPlayer";
-import Footer from "./components/Footer";
-import Navigation from "./components/Navigation";
-import SideBar from "./components/SideBar";
-import TrackList from "./components/TrackList";
+import AudioPlayer from "./components/AudioPlayer/AudioPlayer";
+import Footer from "./components/Footer/Footer";
+import NavMenu from "./components/Navigation/NavMenu";
+import SideBar from "./components/SideBar/SideBar";
+import TrackList from "./components/TrackList/TrackList";
 
 function App() {
   return (
     <div className="wrapper">
       <div className="container">
         <main className="main">
-          <Navigation />
-          <TrackList/>
-          <SideBar/>
+          <NavMenu />
+          <TrackList />
+          <SideBar />
         </main>
         <AudioPlayer />
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );
