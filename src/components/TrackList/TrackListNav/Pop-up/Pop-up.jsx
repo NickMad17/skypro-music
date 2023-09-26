@@ -4,18 +4,18 @@ import { listTrack } from "../../obj";
 function PopUp({ name }) {
   let newClassName = "";
   if (name === "button-author") {
-    newClassName = "autor";
     return (
-      <div className={newClassName}>
+      <div className="pop-up" style={  {top : "50px",
+        left: "130px"}}>
         {listTrack.map((track, id) => {
           return <a className="pop-up__text" key={id}>{track.autor}</a>;
         })}
       </div>
     );
   } else if (name === "button-year") {
-    newClassName = "year";
     return (
-      <div className={newClassName}>
+      <div className="pop-up" style={  {top : "50px",
+        left: "280px"}}>
         {/*{listTrack.map((track, id) => {*/}
         {/*  return <a className="pop-up__text" key={id}>{track.autor}</a>;*/}
         {/*})}*/}
@@ -26,9 +26,9 @@ function PopUp({ name }) {
       </div>
     );
   } else if (name === "button-genre") {
-    newClassName = "genre";
     return (
-      <div className={newClassName}>
+      <div className="pop-up" style={  {top : "50px",
+        left: "430px"}}>
         {/*{listTrack.map((track, id) => {*/}
         {/*  return <a className="pop-up__text" key={id}>{track.autor}</a>;*/}
         {/*})}*/}
