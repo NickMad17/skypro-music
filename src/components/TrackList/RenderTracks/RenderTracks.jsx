@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Track from "./Track";
-import { listTrack } from "./obj";
+import Track from "./Track/Track";
+import { listTrack } from "../obj";
 
 const RenderTracks = () => {
 

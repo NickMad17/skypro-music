@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { deley, load, runLoad } from '../Sceleton/loadStart';
-import SceletonTrack from "../Sceleton/SceletonTrack";
+import { deley, load, runLoad } from '../../../Sceleton/loadStart';
+import SceletonTrack from "../../../Sceleton/SceletonTrack";
 
 
 const Track = (props) => {
