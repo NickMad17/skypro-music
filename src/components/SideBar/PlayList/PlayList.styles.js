@@ -15,8 +15,9 @@ export const SidebarLink = styled.a`
 export const SidebarImg = styled.img`
   width: 100%;
   height: auto;
-  transition: 0.3s ease-out;
-  &:hover{
+  transition: all 0.3s ease;
+
+  &:hover {
     transform: scale(1.13);
   }
 `;
