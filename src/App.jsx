@@ -1,21 +1,21 @@
-import AudioPlayer from "./components/AudioPlayer/AudioPlayer";
-import Footer from "./components/Footer/Footer";
-import NavMenu from "./components/NavMenu/NavMenu";
-import SideBar from "./components/SideBar/SideBar";
-import TrackList from "./components/TrackList/TrackList";
-import * as S from "./App.styles"
+import { AppRoutes } from "./routes";
+import * as S from "./App.styles";
+import React, { useState } from "react";
+import { getUserName } from "./localStorage/localStorage";
+
 
 function App() {
+
+  const userToken = getUserName();
+  console.log(userToken);
+  const [user] = useState(() => {
+    return userToken === "maady" ? true : false;
+  });
+
   return (
     <S.Wrapper>
       <S.Container>
-        <S.Main>
-          <NavMenu />
-          <TrackList />
-          <SideBar />
-        </S.Main>
-        <AudioPlayer />
-        <Footer />
+        <AppRoutes user={user}/>
       </S.Container>
     </S.Wrapper>
   );

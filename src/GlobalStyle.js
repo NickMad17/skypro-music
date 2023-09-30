@@ -10,7 +10,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
 
-
   *:before,
   *:after {
     -webkit-box-sizing: border-box;
@@ -22,7 +21,13 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     font-family: "StratosSkyeng", sans-serif;
     cursor: pointer;
+    color: #fff;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.71);
+    }
   }
+
 
   button,
   ._btn {
