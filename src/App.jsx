@@ -3,20 +3,21 @@ import Footer from "./components/Footer/Footer";
 import NavMenu from "./components/NavMenu/NavMenu";
 import SideBar from "./components/SideBar/SideBar";
 import TrackList from "./components/TrackList/TrackList";
+import * as S from "./App.styles"
 
 function App() {
   return (
-    <div className="wrapper">
-      <div className="container">
-        <main className="main">
+    <S.Wrapper>
+      <S.Container>
+        <S.Main>
           <NavMenu />
           <TrackList />
           <SideBar />
-        </main>
+        </S.Main>
         <AudioPlayer />
         <Footer />
-      </div>
-    </div>
+      </S.Container>
+    </S.Wrapper>
   );
 }
 

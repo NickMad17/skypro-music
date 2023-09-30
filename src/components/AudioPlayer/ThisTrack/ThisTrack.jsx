@@ -1,25 +1,26 @@
-import React from 'react';
+import React from "react";
+import * as S from "./ThisTrack.styles";
 
 const ThisTrack = () => {
-    return(
-        <div className='track-play__contain'>
-            <div className="track-play__image">
-                  <svg className="track-play__svg" alt="music">
-                    <use href="img/icon/sprite.svg#icon-note"></use>
-                  </svg>
-                </div>
-                <div className="track-play__author">
-                  <a className="track-play__author-link" href="http://">
-                    Ты та...
-                  </a>
-                </div>
-                <div className="track-play__album">
-                  <a className="track-play__album-link" href="http://">
-                    Баста
-                  </a>
-                </div>
-        </div>
-    )
-}
+  return (
+    <S.TrackPlayContain>
+      <S.TrackPlayImage>
+        <S.TrackPlaySvg alt="music">
+          <use href="img/icon/sprite.svg#icon-note"></use>
+        </S.TrackPlaySvg>
+      </S.TrackPlayImage>
+      <S.TrackPlayAuthor>
+        <S.TrackPlayAuthorLink href="http://">
+          Ты та...
+        </S.TrackPlayAuthorLink>
+      </S.TrackPlayAuthor>
+      <S.TrackPlayAlbum>
+        <S.TrackPlayAlbumLink href="http://">
+          Баста
+        </S.TrackPlayAlbumLink>
+      </S.TrackPlayAlbum>
+    </S.TrackPlayContain>
+  );
+};
 
-export default ThisTrack
+export default ThisTrack;

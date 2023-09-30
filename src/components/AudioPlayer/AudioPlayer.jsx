@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SceletonPlayList from "../Sceleton/SceletonPlayList";
 import { deley, load, runLoad } from "../Sceleton/loadStart";
 import ThisTrack from "./ThisTrack/ThisTrack";
+import * as S from "./AudioPlayer.styles";
 
 const AudioPlayer = () => {
   const [loadState, getLoad] = useState(load);
@@ -17,78 +18,78 @@ const AudioPlayer = () => {
 
   preLoad();
 
+
   return (
-    <div className="bar">
-      <div className="bar__content">
-        <div className="bar__player-progress"></div>
-        <div className="bar__player-block">
-          <div className="bar__player player">
-            <div className="player__controls">
-              <div className="player__btn-prev">
-                <svg className="player__btn-prev-svg" alt="prev">
+    <S.Bar>
+      <S.BarContent>
+        <S.BarPlayerProgress></S.BarPlayerProgress>
+        <S.BarPlayerBlock>
+          <S.BarPlayer>
+            <S.PlayerControls>
+              <S.BtnPrev>
+                <S.BtnPrevSvg alt="prev">
                   <use href="img/icon/sprite.svg#icon-prev"></use>
-                </svg>
-              </div>
-              <div className="player__btn-play _btn">
-                <svg className="player__btn-play-svg" alt="play">
+                </S.BtnPrevSvg>
+              </S.BtnPrev>
+              <S.BtnPlay>
+                <S.BtnPlaySvg alt="play">
                   <use href="img/icon/sprite.svg#icon-play"></use>
-                </svg>
-              </div>
-              <div className="player__btn-next">
-                <svg className="player__btn-next-svg" alt="next">
+                </S.BtnPlaySvg>
+              </S.BtnPlay>
+              <S.BtnNext>
+                <S.BtnNextSvg alt="next">
                   <use href="img/icon/sprite.svg#icon-next"></use>
-                </svg>
-              </div>
-              <div className="player__btn-repeat _btn-icon">
-                <svg className="player__btn-repeat-svg" alt="repeat">
+                </S.BtnNextSvg>
+              </S.BtnNext>
+              <S.BtnRepeat>
+                <S.BtnRepeatSvg alt="repeat">
                   <use href="img/icon/sprite.svg#icon-repeat"></use>
-                </svg>
-              </div>
-              <div className="player__btn-shuffle _btn-icon">
-                <svg className="player__btn-shuffle-svg" alt="shuffle">
+                </S.BtnRepeatSvg>
+              </S.BtnRepeat>
+              <S.BtnShuffle>
+                <S.BtnShuffleSvg alt="shuffle">
                   <use href="img/icon/sprite.svg#icon-shuffle"></use>
-                </svg>
-              </div>
-            </div>
+                </S.BtnShuffleSvg>
+              </S.BtnShuffle>
+            </S.PlayerControls>
 
-            <div className="player__track-play track-play">
-              <div className="track-play__contain">
-                 {loadState ? <SceletonPlayList/>: <ThisTrack/>}
-              </div>
+            <S.PlayerTrackPlay>
+              <S.Contain>
+                {loadState ? <SceletonPlayList /> : <ThisTrack />}
+              </S.Contain>
 
-              <div className="track-play__like-dis">
-                <div className="track-play__like _btn-icon">
-                  <svg className="track-play__like-svg" alt="like">
+              <S.BtnDisAndLike>
+                <S.BtnLike>
+                  <S.BtnLikeSvg alt="like">
                     <use href="img/icon/sprite.svg#icon-like"></use>
-                  </svg>
-                </div>
-                <div className="track-play__dislike _btn-icon">
-                  <svg className="track-play__dislike-svg" alt="dislike">
+                  </S.BtnLikeSvg>
+                </S.BtnLike>
+                <S.BtnDislike>
+                  <S.BtndislikeSvg alt="dislike">
                     <use href="img/icon/sprite.svg#icon-dislike"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="bar__volume-block volume">
-            <div className="volume__content">
-              <div className="volume__image">
-                <svg className="volume__svg" alt="volume">
+                  </S.BtndislikeSvg>
+                </S.BtnDislike>
+              </S.BtnDisAndLike>
+            </S.PlayerTrackPlay>
+          </S.BarPlayer>
+          <S.BarVolumeBlock>
+            <S.VolumeContent>
+              <S.VolumeImage>
+                <S.VolumeSvg alt="volume">
                   <use href="img/icon/sprite.svg#icon-volume"></use>
-                </svg>
-              </div>
-              <div className="volume__progress _btn">
-                <input
-                  className="volume__progress-line _btn"
+                </S.VolumeSvg>
+              </S.VolumeImage>
+              <S.VolumeProgress>
+                <S.VolumeProgressLine
                   type="range"
                   name="range"
                 />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              </S.VolumeProgress>
+            </S.VolumeContent>
+          </S.BarVolumeBlock>
+        </S.BarPlayerBlock>
+      </S.BarContent>
+    </S.Bar>
   );
 };
 

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { deley, load, runLoad } from '../../../Sceleton/loadStart';
+import React, { useState } from "react";
+import { deley, load, runLoad } from "../../../Sceleton/loadStart";
 import SceletonTrack from "../../../Sceleton/SceletonTrack";
-
+import * as S from "./Track.styles"
 
 const Track = (props) => {
   const [loadState, getLoad] = useState(load);
@@ -14,44 +14,44 @@ const Track = (props) => {
       });
     }, deley);
   };
-  
+
   preLoad();
 
   return (
-        <div className="playlist__item">
-        { loadState ? <SceletonTrack/> : <div className="playlist__track track">
-          <div className="track__title">
-          <div className="track__title-image">
-            <svg className="track__title-svg" alt="music">
+    <S.PlaylistItem>
+      {loadState ? <SceletonTrack /> : <S.PlaylistTrack>
+        <S.TrackTitle>
+          <S.TrackTitleImage>
+            <S.TrackTitleSvg alt="music">
               <use href="img/icon/sprite.svg#icon-note"></use>
-            </svg>
-          </div>
-            <div className="track__title-text">
-              <a className="track__title-link" href="http://">
-                {props.name}
-                <span className="track__title-span">{props.feat}</span>
-              </a>
-            </div>
-          </div>
-          <div className="track__author">
-            <a className="track__author-link" href="http://">
-              {props.autor}
-            </a>
-          </div>
-          <div className="track__album">
-            <a className="track__album-link" href="http://">
-              {props.albom}
-            </a>
-          </div>
-          <div className="track__time">
-            <svg className="track__time-svg" alt="time">
-              <use href="img/icon/sprite.svg#icon-like"></use>
-            </svg>
-                <span className="track__time-text">{props.time}</span>
-          </div>
-        </div>}
-      </div>
-    )
-}
+            </S.TrackTitleSvg>
+          </S.TrackTitleImage>
+          <S.TrackTitleText>
+            <S.TrackTitleLink href="http://">
+              {props.name}
+              <S.TrackTitleSpan>{props.feat}</S.TrackTitleSpan>
+            </S.TrackTitleLink>
+          </S.TrackTitleText>
+        </S.TrackTitle>
+        <S.TrackAuthor>
+          <S.TrackAuthorLink href="http://">
+            {props.autor}
+          </S.TrackAuthorLink>
+        </S.TrackAuthor>
+        <S.TrackAlbum>
+          <S.TrackAlbumLink href="http://">
+            {props.albom}
+          </S.TrackAlbumLink>
+        </S.TrackAlbum>
+        <S.TrackTime>
+          <S.TrackTimeSvg alt="time">
+            <use href="img/icon/sprite.svg#icon-like"></use>
+          </S.TrackTimeSvg>
+          <S.TrackTimeText>{props.time}</S.TrackTimeText>
+        </S.TrackTime>
+      </S.PlaylistTrack>}
+    </S.PlaylistItem>
+  );
+};
 
 export default Track;

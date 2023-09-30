@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import PopUp from "./Pop-up/Pop-up";
+import * as S from "./TrackListNav.styles"
 
 function TrackListNav() {
   const [btnState, setBtnState] = useState("");
 
   const switchSlide = (className) => {
-    if(btnState !== className) {
+    if (btnState !== className) {
       setBtnState(className);
 
     } else {
@@ -13,24 +14,30 @@ function TrackListNav() {
     }
   };
 
+
+
   return (
-    <div className="centerblock__filter filter">
-      <div style={{padding:"20px"}}>{btnState !== "" ? <PopUp name={btnState}/> : ""}</div>
-      <div className="filter__title">Искать по:</div>
-      <div className={btnState === "button-author"? "filter__button button-author _btn-text btn-active": "filter__button button-author _btn-text"} onClick={() => {
-        switchSlide("button-author");
-      }}>
-        исполнителю
+
+    <S.CenterblockFilter >
+
+      {btnState !== "" ? <PopUp name={btnState} /> : ""}
+      <S.FilterTitle>Искать по:</S.FilterTitle>
+      <div onClick={() => switchSlide("button-author")}>
+        {btnState === "button-author" ? <S.FilterBtnActive>исполнителю</S.FilterBtnActive> :
+          <S.FilterBtn>исполнителю</S.FilterBtn>}
       </div>
-      <div className={btnState === "button-year" ? "filter__button button-year _btn-text btn-active": "filter__button button-year _btn-text"} onClick={() => {
-        switchSlide("button-year");
-      }}>году выпуска
+
+      <div onClick={() => switchSlide("button-year")}>
+        {btnState === "button-year" ?
+          <S.FilterBtnActive>году выпуска</S.FilterBtnActive> : <S.FilterBtn>году выпуска</S.FilterBtn>}
       </div>
-      <div className={btnState === "button-genre"? "filter__button button-genre _btn-text btn-active": "filter__button button-genre _btn-text"} onClick={() => {
-        switchSlide("button-genre");
-      }}>жанру
+
+      <div onClick={() => switchSlide("button-genre")}>
+        {btnState === "button-genre" ?
+          <S.FilterBtnActive> жанру </S.FilterBtnActive> : <S.FilterBtn> жанру </S.FilterBtn>}
       </div>
-    </div>
+    </S.CenterblockFilter>
+
   );
 }
 

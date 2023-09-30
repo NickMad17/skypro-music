@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Track from "./Track/Track";
 import { listTrack } from "../obj";
+import * as S from "./RenderTracks.styles"
 
 const RenderTracks = () => {
 
   return (
-    <div className="content__playlist playlist">
+    <S.StyledContentPlaylist>
         {listTrack.map((track, id) => {
           return (
             <Track
@@ -18,7 +19,7 @@ const RenderTracks = () => {
             />
           );
         })}
-    </div>
+    </S.StyledContentPlaylist>
 
   );
 };
