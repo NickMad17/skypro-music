@@ -1,38 +1,38 @@
 import React from "react";
-import RenderTracks from "./RenderTracks";
+import RenderTracks from "./RenderTracks/RenderTracks";
 import TrackListNav from "./TrackListNav/TrackListNav";
+import * as S from "./TrackList.styles"
+
 
 const TrackList = () => {
-
   return (
-    <div className="main__centerblock centerblock">
-      <div className="centerblock__search search">
-        <svg className="search__svg">
+    <S.MainCenterBlock>
+      <S.CenterBlockSearch>
+        <S.SearchSvg>
           <use href="img/icon/sprite.svg#icon-search"></use>
-        </svg>
-        <input
-          className="search__text"
+        </S.SearchSvg>
+        <S.SearchText
           type="search"
           placeholder="Поиск"
           name="search"
         />
-      </div>
-      <h2 className="centerblock__h2">Треки</h2>
-        <TrackListNav/>
-      <div className="centerblock__content">
-        <div className="content__title playlist-title">
-          <div className="playlist-title__col col01">Трек</div>
-          <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-          <div className="playlist-title__col col03">АЛЬБОМ</div>
-          <div className="playlist-title__col col04">
-            <svg className="playlist-title__svg" alt="time">
+      </S.CenterBlockSearch>
+      <S.CenterBlockTitle>Треки</S.CenterBlockTitle>
+      <TrackListNav />
+      <S.CenterBlockContent>
+        <S.ContentTitle>
+          <S.PlayListTitleCol width={447}>Трек</S.PlayListTitleCol>
+          <S.PlayListTitleCol width={321}>ИСПОЛНИТЕЛЬ</S.PlayListTitleCol>
+          <S.PlayListTitleCol width={245}>АЛЬБОМ</S.PlayListTitleCol>
+          <S.PlayListTitleCol width={60} align={"end"}>
+            <S.PlayListTitleSvg alt="time">
               <use href="img/icon/sprite.svg#icon-watch"></use>
-            </svg>
-          </div>
-        </div>
-          <RenderTracks/>
-      </div>
-    </div>
+            </S.PlayListTitleSvg>
+          </S.PlayListTitleCol>
+        </S.ContentTitle>
+        <RenderTracks />
+      </S.CenterBlockContent>
+    </S.MainCenterBlock>
   );
 };
 

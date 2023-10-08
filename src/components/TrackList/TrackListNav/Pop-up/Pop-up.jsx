@@ -1,44 +1,54 @@
 import React from "react";
 import { listTrack } from "../../obj";
+import * as S from "./Pop-up.styles"
 
 function PopUp({ name }) {
   let newClassName = "";
   if (name === "button-author") {
-    newClassName = "autor";
     return (
-      <div className={newClassName}>
-        {listTrack.map((track, id) => {
-          return <a className="pop-up__text" key={id}>{track.autor}</a>;
-        })}
-      </div>
+
+      <S.PopUp left={100}>
+        <S.PopUpContainer >
+          {listTrack.map((track, id) => {
+            return <S.PopUpText  key={id}>{track.autor}</S.PopUpText>;
+          })}
+        </S.PopUpContainer>
+      </S.PopUp>
     );
   } else if (name === "button-year") {
-    newClassName = "year";
     return (
-      <div className={newClassName}>
-        {/*{listTrack.map((track, id) => {*/}
-        {/*  return <a className="pop-up__text" key={id}>{track.autor}</a>;*/}
-        {/*})}*/}
-        <a className="pop-up__text">2020</a>
-        <a className="pop-up__text">2010</a>
-        <a className="pop-up__text">2000</a>
-        <a className="pop-up__text">1990</a>
-      </div>
+      <S.PopUp left={250}>
+        <S.PopUpContainer>
+          {/*{listTrack.map((track, id) => {*/}
+          {/*  return <a  key={id}>{track.autor}</a>;*/}
+          {/*})}*/}
+          <S.PopUpText >2020</S.PopUpText>
+          <S.PopUpText >2010</S.PopUpText>
+          <S.PopUpText >2000</S.PopUpText>
+          <S.PopUpText >1990</S.PopUpText>
+          <S.PopUpText >1990</S.PopUpText>
+          <S.PopUpText >1990</S.PopUpText>
+          <S.PopUpText >1990</S.PopUpText>
+          <S.PopUpText >1990</S.PopUpText>
+          <S.PopUpText >1990</S.PopUpText>
+        </S.PopUpContainer>
+      </S.PopUp>
     );
   } else if (name === "button-genre") {
-    newClassName = "genre";
     return (
-      <div className={newClassName}>
-        {/*{listTrack.map((track, id) => {*/}
-        {/*  return <a className="pop-up__text" key={id}>{track.autor}</a>;*/}
-        {/*})}*/}
-        <a className="pop-up__text">Поп</a>
-        <a className="pop-up__text">Рок</a>
-        <a className="pop-up__text">Альтернатива</a>
-        <a className="pop-up__text">Реп</a>
-        <a className="pop-up__text">Блюз</a>
-        <a className="pop-up__text">Инди</a>
-      </div>
+      <S.PopUp left={400}>
+        <S.PopUpContainer>
+          {/*{listTrack.map((track, id) => {*/}
+          {/*  return <a  key={id}>{track.autor}</a>;*/}
+          {/*})}*/}
+          <S.PopUpText >Поп</S.PopUpText>
+          <S.PopUpText >Рок</S.PopUpText>
+          <S.PopUpText >Альтернатива</S.PopUpText>
+          <S.PopUpText >Реп</S.PopUpText>
+          <S.PopUpText >Блюз</S.PopUpText>
+          <S.PopUpText >Инди</S.PopUpText>
+        </S.PopUpContainer>
+      </S.PopUp>
     );
   }
 

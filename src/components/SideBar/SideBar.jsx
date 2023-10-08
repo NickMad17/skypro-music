@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Playlist from "./PlayList";
+import Playlist from "./PlayList/PlayList";
 import Sceleton from "../Sceleton/SceletonSideBar";
 import { deley, load, runLoad } from "../Sceleton/loadStart";
+import * as S from "./SideBar.styles"
 
 const SideBar = () => {
   const [loadState, getLoad] = useState(load);
@@ -17,18 +18,19 @@ const SideBar = () => {
 
   preLoad();
 
+
   return (
-    <div className="main__sidebar sidebar">
-      <div className="sidebar__personal">
-        <p className="sidebar__personal-name">Maady</p>
-        <div className="sidebar__icon">
+    <S.MainSidebar>
+      <S.SidebarPersonal>
+        <S.SidebarPersonalName className="sidebar__personal-name">Maady</S.SidebarPersonalName>
+        <S.SidebarIcon>
           <svg alt="logout">
             <use href="img/icon/sprite.svg#logout"></use>
           </svg>
-        </div>
-      </div>
-      <div className="sidebar__block">
-        <div className="sidebar__list">
+        </S.SidebarIcon>
+      </S.SidebarPersonal>
+      <S.SidebarBlock>
+        <S.SidebarList>
           {loadState ? (
             <Sceleton height={150} weight={250} />
           ) : (
@@ -44,9 +46,9 @@ const SideBar = () => {
           ) : (
             <Playlist img="img/playlist03.png" />
           )}
-        </div>
-      </div>
-    </div>
+        </S.SidebarList>
+      </S.SidebarBlock>
+    </ S.MainSidebar>
   );
 };
 
