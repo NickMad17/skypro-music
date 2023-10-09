@@ -3,7 +3,7 @@ import * as S from "../../auxiliaryStyles/auxiliaryStyles";
 import { Link } from "react-router-dom";
 
 
-const Registration = () => {
+const Registration = ({ setUser }) => {
   return (
     <S.Center>
       <S.Text style={{
@@ -11,7 +11,7 @@ const Registration = () => {
       }}>
         Registration
       </S.Text>
-      <Link to="/login" >
+      <Link to="/login">
         <p style={{
           fontSize: "23px"
         }}>Go to login</p>

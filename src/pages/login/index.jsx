@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import * as S from "../../auxiliaryStyles/auxiliaryStyles";
 import { Link } from "react-router-dom";
-import { saveUser } from "../../localStorage/localStorage";
 
 
-const Login = () => {
+const Login = ({setUser}) => {
   return (
     <S.Center>
       <S.Text style={{
@@ -14,7 +13,9 @@ const Login = () => {
       </S.Text>
 
       <Link to="/" onClick={() => {
-        saveUser("maady");
+        const newUser = "maady"
+        setUser(newUser)
+        localStorage.setItem("user", newUser);
       }}>
         <button style={{
           width: "100%",

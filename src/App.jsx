@@ -1,24 +1,30 @@
 import { AppRoutes } from "./routes";
 import * as S from "./App.styles";
 import React, { useState } from "react";
-import { getUserName } from "./localStorage/localStorage";
-
-
-
+import { Context } from "./context/context";
+import { load } from "./components/Sceleton/loadStart";
 function App() {
 
-  const userToken = getUserName();
-  console.log(userToken);
-  const [user] = useState(() => {
-    return userToken === "maady" ? true : false;
-  });
+  const [loading, isLoad] = useState(load);
+  // const [selectedTrack, setselectedTrack ]
+
+
+  const userToken = localStorage.getItem("user");
+  const [user, setUser ] = useState(userToken)
 
   return (
-    <S.Wrapper>
-      <S.Container>
-        <AppRoutes user={user}/>
-      </S.Container>
-    </S.Wrapper>
+    <Context.Provider value={{
+      loadState: {
+        loading,
+        isLoad
+      }
+    }}>
+      <S.Wrapper>
+        <S.Container>
+          <AppRoutes user={user} setUser={setUser}/>
+        </S.Container>
+      </S.Wrapper>
+    </Context.Provider>
   );
 }
 

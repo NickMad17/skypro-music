@@ -1,9 +1,8 @@
 import React from "react";
 import * as S from "./Navigation.styles";
 import { Link } from "react-router-dom";
-import { removeUser } from "../../../localStorage/localStorage";
 
-const Navigation = () => {
+const Navigation = ({setUser}) => {
   return (
     <S.NavMenu>
       <S.MenuList>
@@ -20,7 +19,10 @@ const Navigation = () => {
           </Link>
         </S.MenuItem>
         <S.MenuItem>
-          <Link to="/login" onClick={() => removeUser()}>
+          <Link to="/login" onClick={() => {
+            setUser(false);
+            localStorage.removeItem("user");
+          }}>
             <S.MenuLink>
               Выйти
             </S.MenuLink>

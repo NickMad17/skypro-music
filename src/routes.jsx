@@ -8,15 +8,15 @@ import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import Registration from "./pages/registration";
 import MyPlayList from "./pages/my_playlist";
 
-export const AppRoutes = ({ user }) => {
+export const AppRoutes = ({ user, setUser }) => {
 
   return (
     <Routes>
       <Route path="*" element={<NotFound />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/registration" element={<Registration />}/>
-      <Route element={<ProtectedRoute isAllowed={user} />}>
-        <Route path="/" element={<Main />} />
+      <Route path="/login" element={<Login setUser={setUser}/>} />
+      <Route path="/registration" element={<Registration setUser={setUser}/>}/>
+      <Route element={<ProtectedRoute isAllowed={user}  />}>
+        <Route path="/" element={<Main setUser={setUser} />} />
         <Route path="/playlist/:id" element={<PlaylistPage />} />
         <Route path="/my_playlist" element={<MyPlayList/> }/>
       </Route>

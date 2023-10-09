@@ -4,10 +4,8 @@ import Sceleton from "../Sceleton/SceletonSideBar";
 import { deley, load, runLoad } from "../Sceleton/loadStart";
 import * as S from "./SideBar.styles";
 import { Link } from "react-router-dom";
-import { dataList } from "./PlayList/dataList";
-import { getUserName, removeUser } from "../../localStorage/localStorage";
 
-const SideBar = () => {
+const SideBar = ({setUser}) => {
   const [loadState, getLoad] = useState(load);
 
   const preLoad = () => {
@@ -25,10 +23,11 @@ const SideBar = () => {
   return (
     <S.MainSidebar>
       <S.SidebarPersonal>
-        <S.SidebarPersonalName className="sidebar__personal-name">{getUserName()}</S.SidebarPersonalName>
+        <S.SidebarPersonalName className="sidebar__personal-name">{localStorage.getItem("user")}</S.SidebarPersonalName>
         <S.SidebarIcon>
           <Link to="/login" onClick={() => {
-            removeUser();
+            localStorage.removeItem("user");
+            setUser(false);
           }}>
             <svg alt="profile">
               <use href="img/icon/sprite.svg#logout"></use>
