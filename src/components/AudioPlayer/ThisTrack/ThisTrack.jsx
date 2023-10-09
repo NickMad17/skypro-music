@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./ThisTrack.styles";
 
-const ThisTrack = () => {
+const ThisTrack = ({thisTrackPlay}) => {
   return (
     <S.TrackPlayContain>
       <S.TrackPlayImage>
@@ -10,13 +10,13 @@ const ThisTrack = () => {
         </S.TrackPlaySvg>
       </S.TrackPlayImage>
       <S.TrackPlayAuthor>
-        <S.TrackPlayAuthorLink href="http://">
-          Ты та...
+        <S.TrackPlayAuthorLink>
+          {thisTrackPlay.name}
         </S.TrackPlayAuthorLink>
       </S.TrackPlayAuthor>
       <S.TrackPlayAlbum>
-        <S.TrackPlayAlbumLink href="http://">
-          Баста
+        <S.TrackPlayAlbumLink >
+          {thisTrackPlay.author}
         </S.TrackPlayAlbumLink>
       </S.TrackPlayAlbum>
     </S.TrackPlayContain>

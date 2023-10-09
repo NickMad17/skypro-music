@@ -2,20 +2,28 @@ import React, { useContext, useEffect, useState } from "react";
 import Track from "./Track/Track";
 import * as S from "./RenderTracks.styles";
 import { getAllTracks } from "../../../API/api";
-import { deley } from "../../Sceleton/loadStart";
-import { Context } from "../../../context/context";
 import SceletonTrack from "../../Sceleton/SceletonTrack";
 
 const RenderTracks = () => {
-  const { loadState } = useContext(Context);
-  const { isLoad, loading } = loadState;
+  const [loading, isLoad] = useState(null);
   const [tracks, setTracks] = useState([]);
-  useEffect(() => {
-    isLoad(true)
-    getAllTracks().then((tracksData) => {
-      setTracks(tracksData);
+  const [addNewError, setNewError] = useState("")
+
+  const getTracks = async () => {
+    try {
+      isLoad(true);
+      const allTracksData = await getAllTracks();
+      await setTracks(allTracksData);
       isLoad(false);
-    });
+    } catch (error) {
+      isLoad(false);
+      setNewError("Не удалось получить список треков")
+    }
+  };
+
+  useEffect(() => {
+    getTracks();
+
   }, []);
   return (
     <S.ContentPlaylist>
@@ -43,6 +51,7 @@ const RenderTracks = () => {
           return (
             <Track
               key={track.id}
+              id={track.id}
               name={track.name}
               author={track.author}
               album={track.album}
@@ -52,6 +61,7 @@ const RenderTracks = () => {
           );
         })
       }
+      <p style={{color: "red"}}>{addNewError}</p>
 
     </S.ContentPlaylist>
 

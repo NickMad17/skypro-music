@@ -170,11 +170,12 @@ export const BtnDisAndLike = styled.div`
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    margin-left: 26%;
+    margin-left: 30%;
   `;
 
 export const BtnLike = styled(PlayerBtn)`
     padding: 5px;
+  margin-left: 10px;
   `;
 
 export const BtnLikeSvg = styled(BtnRepeatSvg)`

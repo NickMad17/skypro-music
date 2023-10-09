@@ -1,19 +1,18 @@
 import React, { useContext } from "react";
-import { deley } from "../../../Sceleton/loadStart";
-import SceletonTrack from "../../../Sceleton/SceletonTrack";
-import * as S from "./Track.styles"
+import * as S from "./Track.styles";
 import { Context } from "../../../../context/context";
 
 const timeTrack = (time) => {
-  let min = Math.floor(time/60);
-  let sec = time % 60
-  min = min <= 10 ? `0${min}`: min;
-  sec = sec <= 10 ? `0${sec}`: sec;
-  return `${min}:${sec}`
-}
+  let min = Math.floor(time / 60);
+  let sec = time % 60;
+  min = min <= 10 ? `0${min}` : min;
+  sec = sec <= 10 ? `0${sec}` : sec;
+  return `${min}:${sec}`;
+};
 
-const Track = ({name, author, album, time, feat}) => {
-
+const Track = ({ name, author, album, time, feat, id }) => {
+  const { trackPlay } = useContext(Context);
+  const { setTrackId } = trackPlay;
 
   return (
     <S.PlaylistItem>
@@ -25,7 +24,9 @@ const Track = ({name, author, album, time, feat}) => {
             </S.TrackTitleSvg>
           </S.TrackTitleImage>
           <S.TrackTitleText>
-            <S.TrackTitleLink href="http://">
+            <S.TrackTitleLink onClick={() => {
+              setTrackId(id);
+            }}>
               {name}
               <S.TrackTitleSpan>{feat}</S.TrackTitleSpan>
             </S.TrackTitleLink>

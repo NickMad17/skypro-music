@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { Context } from "./context/context";
 import { load } from "./components/Sceleton/loadStart";
 function App() {
+  const [trackId, setTrackId] = useState(null);
 
-  const [loading, isLoad] = useState(null);
   // const [selectedTrack, setselectedTrack ]
 
 
@@ -14,9 +14,9 @@ function App() {
 
   return (
     <Context.Provider value={{
-      loadState: {
-        loading,
-        isLoad
+      trackPlay: {
+        trackId,
+        setTrackId
       }
     }}>
       <S.Wrapper>

@@ -33,11 +33,30 @@ export const getAllTracks = async () => {
       Authorization: `Bearer ${token}`
     }
   });
-
+  if (!response.ok){
+    throw new Error("Ошибка при получении токена")
+  }
   const data = await response.json();
   console.log("Список песен ",data);
   return data;
 };
+
+export const getTrackOnId = async (id) => {
+  const token = await getToken()
+  const response = await fetch(`${gets.tracksAndPlayLists.oneTrack}${id}` , {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  if (!response.ok){
+    throw new Error("Ошибка при получении песни")
+  }
+  const data = await response.json();
+  console.log("Выбранная песня ",data);
+  return data;
+};
+
 
 
 
