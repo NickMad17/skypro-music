@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import * as S from "../../auxiliaryStyles/auxiliaryStyles"
 import { dataList } from "../../components/SideBar/PlayList/dataList";
-const PlaylistPage = () => {
+const Category = () => {
   const params = useParams();
 
   const myList = dataList.find(list => list.id === Number(params.id));
@@ -23,4 +23,4 @@ const PlaylistPage = () => {
   );
 };
 
-export default PlaylistPage;
+export default Category;

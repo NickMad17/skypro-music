@@ -12,7 +12,7 @@ const Navigation = ({setUser}) => {
           </S.MenuLink>
         </S.MenuItem>
         <S.MenuItem>
-          <Link to="/my_playlist">
+          <Link to="/favorites">
             <S.MenuLink>
               Мой плейлист
             </S.MenuLink>

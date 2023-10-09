@@ -27,7 +27,7 @@ const Login = ({setUser}) => {
         }}>Войти
         </button>
       </Link>
-      <Link to="/registration">
+      <Link to="/register">
         <span style={{
           cursor: "pointer",
           fontSize: "30px"

@@ -37,21 +37,21 @@ const SideBar = ({setUser}) => {
       </S.SidebarPersonal>
       <S.SidebarBlock>
         <S.SidebarList>
-          <Link to="/playlist/1">
+          <Link to="/category/1">
             {loadState ? (
               <Sceleton height={150} weight={250} />
             ) : (
               <Playlist img="img/playlist01.png" />
             )}
           </Link>
-          <Link to="/playlist/2">
+          <Link to="/category/2">
             {loadState ? (
               <Sceleton height={150} weight={250} />
             ) : (
               <Playlist img="img/playlist02.png" />
             )}
           </Link>
-          <Link to="/playlist/3">
+          <Link to="/category/3">
             {loadState ? (
               <Sceleton height={150} weight={250} />
             ) : (

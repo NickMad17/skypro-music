@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "../../auxiliaryStyles/auxiliaryStyles";
 
-const MyPlayList = () => {
+const Favorites = () => {
   return (
     <S.Center>
       <S.Text style={{
@@ -14,4 +14,4 @@ const MyPlayList = () => {
   );
 };
 
-export default MyPlayList;
+export default Favorites;

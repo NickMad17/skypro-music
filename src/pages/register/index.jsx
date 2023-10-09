@@ -3,7 +3,7 @@ import * as S from "../../auxiliaryStyles/auxiliaryStyles";
 import { Link } from "react-router-dom";
 
 
-const Registration = ({ setUser }) => {
+const Register = ({ setUser }) => {
   return (
     <S.Center>
       <S.Text style={{
@@ -20,4 +20,4 @@ const Registration = ({ setUser }) => {
   );
 };
 
-export default Registration;
+export default Register;
