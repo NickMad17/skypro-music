@@ -1,22 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import Track from "./Track/Track";
-import { listTrack } from "../obj";
 import * as S from "./RenderTracks.styles";
 import { getAllTracks } from "../../../API/api";
 import { deley } from "../../Sceleton/loadStart";
 import { Context } from "../../../context/context";
 import SceletonTrack from "../../Sceleton/SceletonTrack";
-import { PlaylistItem } from "./RenderTracks.styles";
 
 const RenderTracks = () => {
   const { loadState } = useContext(Context);
   const { isLoad, loading } = loadState;
   const [tracks, setTracks] = useState([]);
   useEffect(() => {
-
+    isLoad(true)
     getAllTracks().then((tracksData) => {
       setTracks(tracksData);
-      isLoad(!loading);
+      isLoad(false);
     });
   }, []);
   return (

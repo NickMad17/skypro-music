@@ -5,7 +5,7 @@ import { Context } from "./context/context";
 import { load } from "./components/Sceleton/loadStart";
 function App() {
 
-  const [loading, isLoad] = useState(load);
+  const [loading, isLoad] = useState(null);
   // const [selectedTrack, setselectedTrack ]
 
 
