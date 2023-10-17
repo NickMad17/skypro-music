@@ -1,25 +1,22 @@
-import React, { useState } from "react";
-import { deley, load, runLoad } from "../../../Sceleton/loadStart";
-import SceletonTrack from "../../../Sceleton/SceletonTrack";
-import * as S from "./Track.styles"
+import React, { useContext } from "react";
+import * as S from "./Track.styles";
+import { Context } from "../../../../context/context";
 
-const Track = (props) => {
-  const [loadState, getLoad] = useState(load);
+const timeTrack = (time) => {
+  let min = Math.floor(time / 60);
+  let sec = time % 60;
+  min = min <= 10 ? `0${min}` : min;
+  sec = sec <= 10 ? `0${sec}` : sec;
+  return `${min}:${sec}`;
+};
 
-  const preLoad = () => {
-    setTimeout(() => {
-      runLoad(load);
-      getLoad(() => {
-        loadState ? loadState : !loadState;
-      });
-    }, deley);
-  };
-
-  preLoad();
+const Track = ({ name, author, album, time, feat, id }) => {
+  const { trackPlay } = useContext(Context);
+  const { setTrackId } = trackPlay;
 
   return (
     <S.PlaylistItem>
-      {loadState ? <SceletonTrack /> : <S.PlaylistTrack>
+      <S.PlaylistTrack>
         <S.TrackTitle>
           <S.TrackTitleImage>
             <S.TrackTitleSvg alt="music">
@@ -27,29 +24,31 @@ const Track = (props) => {
             </S.TrackTitleSvg>
           </S.TrackTitleImage>
           <S.TrackTitleText>
-            <S.TrackTitleLink href="http://">
-              {props.name}
-              <S.TrackTitleSpan>{props.feat}</S.TrackTitleSpan>
+            <S.TrackTitleLink onClick={() => {
+              setTrackId(id);
+            }}>
+              {name}
+              <S.TrackTitleSpan>{feat}</S.TrackTitleSpan>
             </S.TrackTitleLink>
           </S.TrackTitleText>
         </S.TrackTitle>
         <S.TrackAuthor>
           <S.TrackAuthorLink href="http://">
-            {props.autor}
+            {author}
           </S.TrackAuthorLink>
         </S.TrackAuthor>
         <S.TrackAlbum>
           <S.TrackAlbumLink href="http://">
-            {props.albom}
+            {album}
           </S.TrackAlbumLink>
         </S.TrackAlbum>
         <S.TrackTime>
           <S.TrackTimeSvg alt="time">
             <use href="img/icon/sprite.svg#icon-like"></use>
           </S.TrackTimeSvg>
-          <S.TrackTimeText>{props.time}</S.TrackTimeText>
+          <S.TrackTimeText>{timeTrack(time)}</S.TrackTimeText>
         </S.TrackTime>
-      </S.PlaylistTrack>}
+      </S.PlaylistTrack>
     </S.PlaylistItem>
   );
 };

@@ -1,7 +1,8 @@
 import React from "react";
-import * as S from "./Navigation.styles"
+import * as S from "./Navigation.styles";
+import { Link } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = ({setUser}) => {
   return (
     <S.NavMenu>
       <S.MenuList>
@@ -11,14 +12,21 @@ const Navigation = () => {
           </S.MenuLink>
         </S.MenuItem>
         <S.MenuItem>
-          <S.MenuLink href="#">
-            Мой плейлист
-          </S.MenuLink>
+          <Link to="/favorites">
+            <S.MenuLink>
+              Мой плейлист
+            </S.MenuLink>
+          </Link>
         </S.MenuItem>
         <S.MenuItem>
-          <S.MenuLink href="../signin.html">
-            Войти
-          </S.MenuLink>
+          <Link to="/login" onClick={() => {
+            setUser(false);
+            localStorage.removeItem("user");
+          }}>
+            <S.MenuLink>
+              Выйти
+            </S.MenuLink>
+          </Link>
         </S.MenuItem>
       </S.MenuList>
     </S.NavMenu>
