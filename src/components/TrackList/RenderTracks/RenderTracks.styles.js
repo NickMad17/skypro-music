@@ -9,7 +9,7 @@ export const ContentPlaylist = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
   overflow-y: auto;
-  max-height: 53.9vh;
+  max-height: 52vh;
   &::-webkit-scrollbar {
     display: none;
   }

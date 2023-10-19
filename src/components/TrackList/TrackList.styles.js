@@ -11,7 +11,7 @@ export const MainCenterBlock = styled.div`
 export const CenterBlockSearch = styled.div`
   width: 100%;
   border-bottom: 1px solid #4e4e4e;
-  margin-bottom: 51px;
+  margin-bottom: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -85,7 +85,7 @@ export const CenterBlockTitle = styled.h2`
   font-size: 64px;
   line-height: 72px;
   letter-spacing: -0.8px;
-  margin-bottom: 45px;
+  margin-bottom: 30px;
 `;
 
 export const CenterBlockContent = styled.div`
