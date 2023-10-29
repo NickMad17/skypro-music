@@ -30,7 +30,7 @@ const Navigation = () => {
           }}>
             <S.MenuLink>
               Выйти
-            </S.MenuLink>x  
+            </S.MenuLink>
           </Link>
         </S.MenuItem>
       </S.MenuList>

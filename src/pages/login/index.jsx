@@ -86,7 +86,7 @@ export default function Login({ isRegMode = false }) {
           <>
             <S.Inputs>
               <S.ModalInput
-                type="text"
+                type="email"
                 name="login"
                 placeholder="Почта"
                 value={email}
@@ -115,9 +115,12 @@ export default function Login({ isRegMode = false }) {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={() => handleRegister({ email, password })}>
-                Зарегестрироваться
+              <S.PrimaryButton onClick={handleRegister} disabled={isLoad}>
+                {isLoad ? "Загрузка..." : "Зарегестрироваться"}
               </S.PrimaryButton>
+              <Link to="/login">
+                <S.SecondaryButton>Есть аккаунт ?</S.SecondaryButton>
+              </Link>
             </S.Buttons>
           </>
         ) : (

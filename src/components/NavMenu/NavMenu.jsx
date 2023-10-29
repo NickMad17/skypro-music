@@ -8,7 +8,7 @@ const NavMenu = () => {
   const [click, setClicks] = useState(false);
 
   const addNavigation = () => {
-    setClicks(() => (click === true ? false : true));
+    setClicks(!click);
   };
 
   return (
