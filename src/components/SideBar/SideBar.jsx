@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Playlist from "./PlayList/PlayList";
 import Sceleton from "../Sceleton/SceletonSideBar";
 import { deley, load, runLoad } from "../Sceleton/loadStart";
 import * as S from "./SideBar.styles";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/user_context";
 
-const SideBar = ({setUser}) => {
+const SideBar = () => {
+  const { setUser , user } = useContext(UserContext);
   const [loadState, getLoad] = useState(load);
 
   const preLoad = () => {
@@ -17,17 +19,16 @@ const SideBar = ({setUser}) => {
     }, deley);
   };
 
+
   preLoad();
-
-
   return (
     <S.MainSidebar>
       <S.SidebarPersonal>
-        <S.SidebarPersonalName className="sidebar__personal-name">{localStorage.getItem("user")}</S.SidebarPersonalName>
+        <S.SidebarPersonalName className="sidebar__personal-name">{user.username}</S.SidebarPersonalName>
         <S.SidebarIcon>
           <Link to="/login" onClick={() => {
             localStorage.removeItem("user");
-            setUser(false);
+            setUser(null);
           }}>
             <svg alt="profile">
               <use href="img/icon/sprite.svg#logout"></use>

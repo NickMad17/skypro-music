@@ -5,15 +5,13 @@ import { Context } from "../../../../context/context";
 const timeTrack = (time) => {
   let min = Math.floor(time / 60);
   let sec = time % 60;
-  min = min <= 10 ? `0${min}` : min;
-  sec = sec <= 10 ? `0${sec}` : sec;
+  min = min < 10 ? `0${min}` : min;
+  sec = sec < 10 ? `0${sec}` : sec;
   return `${min}:${sec}`;
 };
 
 const Track = ({ name, author, album, time, feat, id }) => {
-  const { trackPlay } = useContext(Context);
-  const { setTrackId } = trackPlay;
-
+  const { setTrackId } = useContext(Context);
   return (
     <S.PlaylistItem>
       <S.PlaylistTrack>

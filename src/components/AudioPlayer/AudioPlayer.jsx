@@ -5,12 +5,10 @@ import * as S from "./AudioPlayer.styles";
 import { getTrackOnId } from "../../API/api";
 import { Context } from "../../context/context";
 import ProgressBar from "./ProgressBar/ProgressBar";
-import { BtnRepeatSvgActive } from "./AudioPlayer.styles";
 
 const AudioPlayer = () => {
 
-  const { trackPlay } = useContext(Context);
-  const { trackId } = trackPlay;
+  const { trackId } = useContext(Context);
   const [loading, isLoad] = useState(null);
   const [thisTrackPlay, setThisTrack] = useState(null);
   const [isCurrentTime, setCurrentTime] = useState(0);
@@ -36,7 +34,12 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     getTrack();
+    return () => {
+      setIsPlaying(true);
+      // setThisTrack(null)
+    };
   }, [trackId]);
+
 
   const handleLoop = () => {
     audioRef.current.loop = "loop";
@@ -74,16 +77,16 @@ const AudioPlayer = () => {
   const timeTrack = (time) => {
     let min = Math.floor(time / 60);
     let sec = Math.floor(time % 60);
-    min = min <= 10 ? `0${min}` : min;
-    sec = sec <= 10 ? `0${sec}` : sec;
+    min = min < 10 ? `0${min}` : min;
+    sec = sec < 10 ? `0${sec}` : sec;
     return `${min}:${sec}`;
   };
 
   return (
     <>
       {
-        thisTrackPlay ? <>
-            <audio ref={audioRef} src={thisTrackPlay.track_file} type="audio/mpeg" autoPlay="autoplay"
+        thisTrackPlay && (<>
+            <audio ref={audioRef} src={thisTrackPlay.track_file} type="audio/mpeg" autoPlay={true}
                    onTimeUpdate={onPlaying}></audio>
 
             <p style={{
@@ -171,9 +174,7 @@ const AudioPlayer = () => {
                 </S.BarPlayerBlock>
               </S.BarContent>
             </S.Bar>
-          </>
-          :
-          ""
+          </>)
       }
     </>
   );
