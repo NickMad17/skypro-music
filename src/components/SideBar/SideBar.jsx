@@ -5,9 +5,11 @@ import { deley, load, runLoad } from "../Sceleton/loadStart";
 import * as S from "./SideBar.styles";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/user_context";
+import { Context } from "../../context/context";
 
 const SideBar = () => {
-  const { setUser , user } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
+  const { setTrackId } = useContext(Context);
   const [loadState, getLoad] = useState(load);
 
   const preLoad = () => {
@@ -21,14 +23,16 @@ const SideBar = () => {
 
 
   preLoad();
+
   return (
     <S.MainSidebar>
       <S.SidebarPersonal>
         <S.SidebarPersonalName className="sidebar__personal-name">{user.username}</S.SidebarPersonalName>
         <S.SidebarIcon>
           <Link to="/login" onClick={() => {
-            localStorage.removeItem("user");
             setUser(null);
+            setTrackId(null);
+            localStorage.removeItem("user");
           }}>
             <svg alt="profile">
               <use href="img/icon/sprite.svg#logout"></use>

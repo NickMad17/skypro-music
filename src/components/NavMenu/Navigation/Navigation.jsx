@@ -5,8 +5,8 @@ import { Context } from "../../../context/context";
 import { UserContext } from "../../../context/user_context";
 
 const Navigation = () => {
-  const {setTrackId} = useContext(Context);
-  const {setUser}  = useContext(UserContext)
+  const { setTrackId } = useContext(Context);
+  const { setUser } = useContext(UserContext);
   return (
     <S.NavMenu>
       <S.MenuList>
@@ -25,12 +25,12 @@ const Navigation = () => {
         <S.MenuItem>
           <Link to="/login" onClick={() => {
             setUser(null);
-            setTrackId(null)
+            setTrackId(null);
             localStorage.removeItem("user");
           }}>
             <S.MenuLink>
               Выйти
-            </S.MenuLink>
+            </S.MenuLink>x  
           </Link>
         </S.MenuItem>
       </S.MenuList>
