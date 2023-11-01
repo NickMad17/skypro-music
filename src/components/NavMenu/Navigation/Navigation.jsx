@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as S from "./Navigation.styles";
 import { Link } from "react-router-dom";
+import { Context } from "../../../context/context";
+import { UserContext } from "../../../context/user_context";
 
-const Navigation = ({setUser}) => {
+const Navigation = () => {
+  const { setTrackId } = useContext(Context);
+  const { setUser } = useContext(UserContext);
   return (
     <S.NavMenu>
       <S.MenuList>
@@ -20,7 +24,8 @@ const Navigation = ({setUser}) => {
         </S.MenuItem>
         <S.MenuItem>
           <Link to="/login" onClick={() => {
-            setUser(false);
+            setUser(null);
+            setTrackId(null);
             localStorage.removeItem("user");
           }}>
             <S.MenuLink>

@@ -5,16 +5,14 @@ import TrackList from "../../components/TrackList/TrackList";
 import SideBar from "../../components/SideBar/SideBar";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import Footer from "../../components/Footer/Footer";
-import ProgressBar from "../../components/AudioPlayer/ProgressBar/ProgressBar";
 
-const Main = ({setUser}) => {
-  // const [sideBar , setSideBar] = useState()
+const Main = () => {
   return (
     <div>
       <S.Main>
-        <NavMenu setUser={setUser}/>
+        <NavMenu />
         <TrackList />
-        <SideBar setUser={setUser} />
+        <SideBar />
       </S.Main>
       <AudioPlayer />
       <Footer />

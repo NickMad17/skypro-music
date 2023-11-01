@@ -4,11 +4,11 @@ import Navigation from "./Navigation/Navigation";
 import * as S from "./NavMenu.styles";
 import { Link } from "react-router-dom";
 
-const NavMenu = ({setUser}) => {
+const NavMenu = () => {
   const [click, setClicks] = useState(false);
 
   const addNavigation = () => {
-    setClicks(() => (click === true ? false : true));
+    setClicks(!click);
   };
 
   return (
@@ -23,7 +23,7 @@ const NavMenu = ({setUser}) => {
         <S.BurgerLine></S.BurgerLine>
         <S.BurgerLine></S.BurgerLine>
       </S.NavBurger>
-      {click ? <Navigation setUser={setUser}/> : ""}
+      {click && <Navigation />}
     </S.MainMav>);
 };
 
