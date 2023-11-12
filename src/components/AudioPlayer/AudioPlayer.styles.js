@@ -141,10 +141,23 @@ export const BtnShuffle = styled(PlayerBtn)`
 `;
 
 export const BtnShuffleSvg = styled(BtnRepeatSvg)`
-  width: 19px;
-  height: 12px;
-  fill: transparent;
-  stroke: #696969;
+    width: 19px;
+    height: 12px;
+    fill: transparent;
+    stroke: ${({ wtrue }) => wtrue ? "rgba(255, 255, 255, 0.94)" : "#696969"};
+
+    &:hover {
+        fill: transparent;
+        stroke: ${({ wtrue }) => wtrue ? "rgba(255, 255, 255, 0.94)" : "#acacac"};
+        cursor: pointer;
+    }
+
+    &:active {
+        fill: #696969;
+        stroke: #ffffff;
+        ${({ wtrue }) => wtrue ? "#696969" : "#ffffff"}
+        cursor: pointer;
+    }
 `;
 
 export const PlayerTrackPlay = styled.div`
