@@ -162,7 +162,7 @@ export const TrackActive = styled.span`
 
 export const Pause  = styled.div`
   position: absolute;
-  padding: 15px;
+  padding: 20px;
   background: rgba(255, 255, 255, 0);
   border-radius: 50%;
   transition: 0.3s;
