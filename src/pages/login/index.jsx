@@ -145,7 +145,7 @@ export default function Login({ isRegMode = false }) {
                 }}
               />
             </S.Inputs>
-            {error && <S.Error>{error}</S.Error>}
+            {error && <S.Error>{error === "Failed to fetch" ? "Нет интернета": error}</S.Error>}
             <S.Buttons>
               <S.PrimaryButton onClick={handleLogin} disabled={isLoad}>
                 {isLoad ? "Загрузка..." : "Войти"}

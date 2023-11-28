@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import * as S from "./Track.styles";
-import { Context } from "../../../../context/context";
+import { useSelector } from "react-redux";
+import { useActions } from "../../../../hooks/useActions";
+import { usePlayPause, useTrackId } from "../../../../hooks/useTracks";
 
 const timeTrack = (time) => {
   let min = Math.floor(time / 60);
@@ -10,20 +12,31 @@ const timeTrack = (time) => {
   return `${min}:${sec}`;
 };
 
-const Track = ({ name, author, album, time, feat, id }) => {
-  const { setTrackId } = useContext(Context);
+const Track = ({ allTracks, name, author, album, time, feat, id }) => {
+  const trackList = useSelector(state => state.tracks);
+  const { addTrackPlay, addRandomTracks } = useActions();
+  const activeTrack = useTrackId();
+  const pause = usePlayPause();
+
+  const [isLike, setLike] = useState(false);
   return (
     <S.PlaylistItem>
       <S.PlaylistTrack>
         <S.TrackTitle>
           <S.TrackTitleImage>
+            <S.Pause onClick={() => {
+              addTrackPlay(id);
+              addRandomTracks(allTracks);
+            }}/>
+            {activeTrack === id && <S.TrackActive pause={pause} />}
             <S.TrackTitleSvg alt="music">
               <use href="img/icon/sprite.svg#icon-note"></use>
             </S.TrackTitleSvg>
           </S.TrackTitleImage>
           <S.TrackTitleText>
             <S.TrackTitleLink onClick={() => {
-              setTrackId(id);
+              addTrackPlay(id);
+              addRandomTracks(allTracks);
             }}>
               {name}
               <S.TrackTitleSpan>{feat}</S.TrackTitleSpan>
@@ -41,8 +54,13 @@ const Track = ({ name, author, album, time, feat, id }) => {
           </S.TrackAlbumLink>
         </S.TrackAlbum>
         <S.TrackTime>
-          <S.TrackTimeSvg alt="time">
-            <use href="img/icon/sprite.svg#icon-like"></use>
+          <S.TrackTimeSvg alt="time" onClick={() => {
+            setLike(!isLike);
+          }}>
+            {isLike ?
+              <use href="img/icon/sprite.svg#icon-like"></use>
+              :
+              <use href="img/icon/sprite.svg#icon-dislike"></use>}
           </S.TrackTimeSvg>
           <S.TrackTimeText>{timeTrack(time)}</S.TrackTimeText>
         </S.TrackTime>

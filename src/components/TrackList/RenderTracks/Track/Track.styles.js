@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css, keyframes} from "styled-components";
 
 export const PlaylistItem = styled.div`
     width: 100%;
@@ -37,21 +37,22 @@ export const TrackTitle = styled.div`
   `;
 
 export const TrackTitleImage = styled.div`
-    width: 51px;
-    height: 51px;
-    padding: 16px;
-    background: #313131;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    margin-right: 17px;
-  `;
+  position: relative;
+  width: 51px;
+  height: 51px;
+  padding: 16px;
+  background: #313131;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-right: 17px;
+`;
 export const TrackTitleSvg = styled.svg`
     width: 18px;
     height: 17px;
@@ -121,6 +122,7 @@ export const TrackTimeSvg = styled.svg`
     margin-right: 17px;
     fill: transparent;
     stroke: #696969;
+    cursor: pointer;
   `
 
 
@@ -132,3 +134,43 @@ export const TrackTimeText = styled.span`
     text-align: right;
     color: #696969;
   `
+
+const rotate = keyframes`
+  0% {
+    padding: 5px;
+  }
+  50%{
+    padding: 12px;
+  }
+  100%{
+    padding: 7px;
+  }
+`
+
+const animation = () => css`
+  ${rotate} ${({pause}) => pause ? "0.6s linear infinite" : ""}}
+  `
+
+export const TrackActive = styled.span`
+  position: absolute;
+  padding: 5px;
+  background: #b672ff;
+  border-radius: 50%;
+  
+  animation: ${animation}
+`
+
+export const Pause  = styled.div`
+  position: absolute;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  transition: 0.3s;
+
+  &:hover {
+    background: rgba(145, 53, 245, 0.42);
+    cursor: pointer;
+  }
+`
+
+

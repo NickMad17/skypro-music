@@ -6,10 +6,12 @@ import * as S from "./SideBar.styles";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/user_context";
 import { Context } from "../../context/context";
+import { useActions } from "../../hooks/useActions";
 
 const SideBar = () => {
   const { setUser, user } = useContext(UserContext);
-  const { setTrackId } = useContext(Context);
+
+  const {clear} = useActions()
   const [loadState, getLoad] = useState(load);
 
   const preLoad = () => {
@@ -30,8 +32,8 @@ const SideBar = () => {
         <S.SidebarPersonalName className="sidebar__personal-name">{user.username}</S.SidebarPersonalName>
         <S.SidebarIcon>
           <Link to="/login" onClick={() => {
+            clear()
             setUser(null);
-            setTrackId(null);
             localStorage.removeItem("user");
           }}>
             <svg alt="profile">

@@ -1,16 +1,31 @@
 import React from "react";
-import { listTrack } from "../../obj";
-import * as S from "./Pop-up.styles"
+import * as S from "./Pop-up.styles";
+import { useAllTracks } from "../../../../hooks/useTracks";
+
 
 function PopUp({ name }) {
-  let newClassName = "";
+  const data = useAllTracks();
+
+  const newDataDate =  data.map(track => {
+    const date = track.release_date?.split("-");
+    return (isNaN(date) && date !== undefined) && date[0]
+  })
+  const setDate = new Set(newDataDate);
+  const dataDate = [...setDate]
+
+  const newDataGenre =  data.map(track => {
+    return track.genre
+  })
+
+  const setGenre = new Set(newDataGenre)
+  const dataGenre = [...setGenre]
   if (name === "button-author") {
     return (
 
       <S.PopUp left={100}>
-        <S.PopUpContainer >
-          {listTrack.map((track, id) => {
-            return <S.PopUpText  key={id}>{track.autor}</S.PopUpText>;
+        <S.PopUpContainer>
+          {data.map((track) => {
+            return track.author !== "-" && <S.PopUpText key={track.id}>{track.author}</S.PopUpText>;
           })}
         </S.PopUpContainer>
       </S.PopUp>
@@ -19,18 +34,9 @@ function PopUp({ name }) {
     return (
       <S.PopUp left={250}>
         <S.PopUpContainer>
-          {/*{listTrack.map((track, id) => {*/}
-          {/*  return <a  key={id}>{track.autor}</a>;*/}
-          {/*})}*/}
-          <S.PopUpText >2020</S.PopUpText>
-          <S.PopUpText >2010</S.PopUpText>
-          <S.PopUpText >2000</S.PopUpText>
-          <S.PopUpText >1990</S.PopUpText>
-          <S.PopUpText >1990</S.PopUpText>
-          <S.PopUpText >1990</S.PopUpText>
-          <S.PopUpText >1990</S.PopUpText>
-          <S.PopUpText >1990</S.PopUpText>
-          <S.PopUpText >1990</S.PopUpText>
+          {dataDate.map((date, id) => {
+            return date && <S.PopUpText key={id}>{date}</S.PopUpText>;
+          })}
         </S.PopUpContainer>
       </S.PopUp>
     );
@@ -38,15 +44,9 @@ function PopUp({ name }) {
     return (
       <S.PopUp left={400}>
         <S.PopUpContainer>
-          {/*{listTrack.map((track, id) => {*/}
-          {/*  return <a  key={id}>{track.autor}</a>;*/}
-          {/*})}*/}
-          <S.PopUpText >Поп</S.PopUpText>
-          <S.PopUpText >Рок</S.PopUpText>
-          <S.PopUpText >Альтернатива</S.PopUpText>
-          <S.PopUpText >Реп</S.PopUpText>
-          <S.PopUpText >Блюз</S.PopUpText>
-          <S.PopUpText >Инди</S.PopUpText>
+          {dataGenre.map((gemre, id) => {
+            return gemre && <S.PopUpText key={id}>{gemre}</S.PopUpText>
+          })}
         </S.PopUpContainer>
       </S.PopUp>
     );
