@@ -1,35 +1,26 @@
-import React, { useEffect, useState } from "react";
-import * as S from "./Track.styles";
+import React, { useState } from "react";
+import * as S from "./MyTrack.styles";
 import { useActions } from "../../../../hooks/useActions";
 import { usePlayPause, useTrackId } from "../../../../hooks/useTracks";
-import {
-  useCreateMyTracksMutation,
-  useDeleteMyTracksMutation,
-} from "../../../../store/api/myTracks.api";
+import { useCreateMyTracksMutation, useGetMyTracksQuery } from "../../../../store/api/myTracks.api";
+
 
 const timeTrack = (time) => {
-  let min = Math.floor(time / 60);
+
+    let min = Math.floor(time / 60);
   let sec = time % 60;
   min = min < 10 ? `0${min}` : min;
   sec = sec < 10 ? `0${sec}` : sec;
   return `${min}:${sec}`;
 };
 
-const Track = ({ allTracks, name, author, album, time, feat, id , stared_user}) => {
+const MyTrack = ({ name, author, album, time, feat, id}) => {
   const { addTrackPlay, addRandomTracks, addTracks, setPlaying } = useActions();
   const activeTrack = useTrackId();
   const pause = usePlayPause();
-  const [createTrack] = useCreateMyTracksMutation();
-  const [isLike, setLike] = useState(false);
-
-
-  useEffect(() => {
-    stared_user.forEach(user => {
-      if(user.email === JSON.parse(localStorage.getItem("user")).userData.email){
-        setLike(true)
-      }
-    })
-  }, [stared_user]);
+  const [createTrack] = useCreateMyTracksMutation()
+  const { data } = useGetMyTracksQuery()
+  const [isLike, setLike] = useState(true);
 
   return (
     <S.PlaylistItem>
@@ -41,9 +32,9 @@ const Track = ({ allTracks, name, author, album, time, feat, id , stared_user}) 
               if (activeTrack === id) {
                 setPlaying(!pause);
               } else {
-                addTracks(allTracks);
+                addTracks(data);
                 addTrackPlay(id);
-                addRandomTracks(allTracks);
+                addRandomTracks(data);
               }
 
             }}>
@@ -70,9 +61,14 @@ const Track = ({ allTracks, name, author, album, time, feat, id , stared_user}) 
           </S.TrackTitleImage>
           <S.TrackTitleText>
             <S.TrackTitleLink onClick={() => {
-              addTracks(allTracks);
-              addTrackPlay(id);
-              addRandomTracks(allTracks);
+              if (activeTrack === id) {
+                setPlaying(!pause);
+              } else {
+                addTracks(data);
+                addTrackPlay(id);
+                addRandomTracks(data);
+              }
+
             }}>
               {name}
               <S.TrackTitleSpan>{feat}</S.TrackTitleSpan>
@@ -110,4 +106,4 @@ const Track = ({ allTracks, name, author, album, time, feat, id , stared_user}) 
   );
 };
 
-export default Track;
+export default MyTrack;

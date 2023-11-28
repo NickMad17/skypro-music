@@ -7,32 +7,34 @@ import { useActions } from "../../../hooks/useActions";
 const Navigation = () => {
   const { setUser } = useContext(UserContext);
 
+  const {changeName} = useActions()
   const {clear} = useActions()
+
   return (
     <S.NavMenu>
       <S.MenuList>
         <S.MenuItem>
-          <S.MenuLink href="#">
-            Главное
-          </S.MenuLink>
+            <S.MenuLink to="/" onClick={() => {
+              // changeName("Треки")
+            }}>
+              Главное
+            </S.MenuLink>
         </S.MenuItem>
         <S.MenuItem>
-          <Link to="/favorites">
-            <S.MenuLink>
+            <S.MenuLink to="/my-playlist" onClick={() => {
+              // changeName("Мои треки")
+            }}>
               Мой плейлист
             </S.MenuLink>
-          </Link>
         </S.MenuItem>
         <S.MenuItem>
-          <Link to="/login" onClick={() => {
-            setUser(null);
-            clear()
-            localStorage.removeItem("user");
-          }}>
-            <S.MenuLink>
+            <S.MenuLink to="/login" onClick={() => {
+              setUser(null);
+              clear()
+              localStorage.removeItem("user");
+            }}>
               Выйти
             </S.MenuLink>
-          </Link>
         </S.MenuItem>
       </S.MenuList>
     </S.NavMenu>

@@ -29,7 +29,7 @@ const SideBar = () => {
   return (
     <S.MainSidebar>
       <S.SidebarPersonal>
-        <S.SidebarPersonalName className="sidebar__personal-name">{user.username}</S.SidebarPersonalName>
+        <S.SidebarPersonalName className="sidebar__personal-name">{user.userData.username}</S.SidebarPersonalName>
         <S.SidebarIcon>
           <Link to="/login" onClick={() => {
             clear()

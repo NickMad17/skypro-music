@@ -1,7 +1,6 @@
-import { useContext } from "react";
-import { Context } from "../context/context";
 
-const gets = {
+export const gets = {
+  baseApi: "https://skypro-music-api.skyeng.tech/",
   tracksAndPlayLists: {
     all: "https://skypro-music-api.skyeng.tech/catalog/track/all/",
     oneTrack: "https://skypro-music-api.skyeng.tech/catalog/track/"
@@ -9,24 +8,42 @@ const gets = {
   auth: {
     login: "https://skypro-music-api.skyeng.tech/user/login/",
     register: "https://skypro-music-api.skyeng.tech/user/signup/",
-    getToken: "https://skypro-music-api.skyeng.tech/user/token/"
+    getToken: "https://skypro-music-api.skyeng.tech/user/token/",
+    getRefresh: "https://skypro-music-api.skyeng.tech/user/token/refresh"
 
   }
 };
 
-const getToken = async () => {
+const setToken = async ({email, password}) => {
   const response = await fetch(gets.auth.getToken, {
     method: "POST",
     body: JSON.stringify({
-      email: "vlad030911@gmail.com",
-      password: "Nikita176n"
+      email: email,
+      password: password
     }),
     headers: {
       "content-type": "application/json"
     }
   });
   const data = await response.json();
-  return data.access;
+  await localStorage.setItem("user", JSON.stringify(data))
+};
+
+export const tokenRefrash = async () => {
+  const response = await fetch(gets.auth.getRefresh, {
+    method: "POST",
+    body: JSON.stringify({
+      refresh: JSON.parse(localStorage.getItem("user")).refresh
+    }),
+    headers: {
+      "content-type": "application/json"
+    }
+  });
+  const data = await response.json();
+  await localStorage.setItem("user", JSON.stringify({
+    ...JSON.parse(localStorage.getItem("user")),
+    ...data
+  }))
 };
 
 export const getLogin = async ({ email, password }) => {
@@ -52,6 +69,7 @@ export const getLogin = async ({ email, password }) => {
     throw new Error("У вас проблемы с интернетом");
   }
   const data = (await response).json();
+  await setToken({email, password})
   return data;
 };
 
@@ -79,32 +97,13 @@ export const getRegister = async ({ email, password }) => {
     throw new Error("У вас проблемы с интернетом");
   }
   const data = (await response).json();
-  return data;
-};
-
-export const getAllTracks = async () => {
-  const token = await getToken();
-  const response = await fetch(gets.tracksAndPlayLists.all, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
-  if (!response.ok) {
-    throw new Error("Ошибка при получении токена");
-  }
-  const data = await response.json();
-  console.log("Список песен ", data);
+  await setToken({email, password})
   return data;
 };
 
 export const getTrackOnId = async (id) => {
-  const token = await getToken();
   const response = await fetch(`${gets.tracksAndPlayLists.oneTrack}${id}`, {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
   });
   if (!response.ok) {
     throw new Error("Ошибка при получении песни");

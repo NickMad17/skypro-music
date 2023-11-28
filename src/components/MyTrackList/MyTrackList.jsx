@@ -1,12 +1,8 @@
 import React from "react";
-import RenderTracks from "./RenderTracks/RenderTracks";
-import TrackListNav from "./TrackListNav/TrackListNav";
-import * as S from "./TrackList.styles";
-import { useListName } from "../../hooks/useTracks";
+import RenderMyTracks from "./RenderTracks/RenderMyTracks";
+import * as S from "./MyList.styles";
 
-
-const TrackList = () => {
-  const nameTrackList = useListName();
+const MyTrackList = () => {
   return (
     <S.MainCenterBlock>
       <S.CenterBlockSearch>
@@ -19,8 +15,7 @@ const TrackList = () => {
           name="search"
         />
       </S.CenterBlockSearch>
-      <S.CenterBlockTitle>Треки</S.CenterBlockTitle>
-      <TrackListNav />
+      <S.CenterBlockTitle>Мои треки</S.CenterBlockTitle>
       <S.CenterBlockContent>
         <S.ContentTitle>
           <S.PlayListTitleCol width={447}>Трек</S.PlayListTitleCol>
@@ -32,10 +27,10 @@ const TrackList = () => {
             </S.PlayListTitleSvg>
           </S.PlayListTitleCol>
         </S.ContentTitle>
-        <RenderTracks />
+        <RenderMyTracks />
       </S.CenterBlockContent>
     </S.MainCenterBlock>
   );
 };
 
-export default TrackList;
+export default MyTrackList;

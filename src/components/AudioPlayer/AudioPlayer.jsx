@@ -6,12 +6,17 @@ import { getTrackOnId } from "../../API/api";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import { usePlayPause, useShuffle, useTrackId } from "../../hooks/useTracks";
 import { useActions } from "../../hooks/useActions";
+import { useCreateMyTracksMutation } from "../../store/api/myTracks.api";
 
 const AudioPlayer = () => {
   const trackID = useTrackId();
   const isPlaying = usePlayPause();
   const { nextTrack, setPlaying, prevTrack, setShuffle } = useActions();
-  const isShuffle = useShuffle()
+  const isShuffle = useShuffle();
+
+  const [isLike, setLike] = useState(false);
+  const [createTrack] = useCreateMyTracksMutation();
+
 
   const [loading, isLoad] = useState(null);
   const [thisTrackPlay, setThisTrack] = useState(null);
@@ -28,29 +33,47 @@ const AudioPlayer = () => {
 
   const getTrack = async () => {
     try {
+      setLike(false)
       isLoad(true);
       const trackData = await getTrackOnId(trackID);
       await setThisTrack(trackData);
       isLoad(false);
+      trackData?.stared_user.forEach(user => {
+        if (user.email === JSON.parse(localStorage.getItem("user")).userData.email) {
+          setLike(true);
+        }
+
+      });
+
     } catch (error) {
       isLoad(false);
     }
   };
 
   useEffect(() => {
-    if (trackID) {
+    if (trackID !== undefined && trackID !== null) {
       setPlaying(true);
-      setIdStart(trackID);
       getTrack();
-      console.log(trackID, "hello");
     }
+
   }, [trackID]);
 
   useEffect(() => {
-    trackID ?
-      handleNextTrack() :
-      "";
+    if (trackEnd !== undefined) {
+      trackID &&
+      handleNextTrack();
+    }
   }, [trackEnd]);
+
+  useEffect(() => {
+    if (trackID) {
+      if (isPlaying) {
+        audioRef?.current?.play();
+      } else {
+        audioRef?.current?.pause();
+      }
+    }
+  }, [isPlaying]);
 
   const handleLoop = () => {
     audioRef.current.loop = "loop";
@@ -64,12 +87,10 @@ const AudioPlayer = () => {
   };
 
   const handleStart = () => {
-    audioRef.current.play();
     setPlaying(true);
   };
 
   const handleStop = () => {
-    audioRef.current.pause();
     setPlaying(false);
   };
 
@@ -82,18 +103,18 @@ const AudioPlayer = () => {
   };
 
   const handleShuffleTrue = () => {
-    setShuffle(true)
+    setShuffle(true);
   };
 
   const handleShuffleFalse = () => {
-    setShuffle(false)
+    setShuffle(false);
   };
 
   const togglePlay = isPlaying ? handleStop : handleStart;
 
   const toggleLoop = isLooping ? handleNoLoop : handleLoop;
 
-  const toggleShuffle = () =>  isShuffle ? handleShuffleFalse() : handleShuffleTrue()
+  const toggleShuffle = () => isShuffle ? handleShuffleFalse() : handleShuffleTrue();
 
   const onPlaying = () => {
 
@@ -161,7 +182,7 @@ const AudioPlayer = () => {
                       </S.BtnNextSvg>
                     </S.BtnNext>
                     <S.BtnRepeat onClick={toggleLoop}>
-                      <S.BtnRepeatSvg wtrue={isLooping} alt="repeat">
+                      <S.BtnRepeatSvg wtrue={isLooping ? 1 : 0} alt="repeat">
                         <use href="img/icon/sprite.svg#icon-repeat"></use>
                       </S.BtnRepeatSvg>
                     </S.BtnRepeat>
@@ -179,8 +200,19 @@ const AudioPlayer = () => {
 
                     <S.BtnDisAndLike>
                       <S.BtnLike>
-                        <S.BtnLikeSvg alt="like">
-                          <use href="img/icon/sprite.svg#icon-like"></use>
+                        <S.BtnLikeSvg alt="like" onClick={() => {
+                          createTrack({
+                            id: trackID,
+                            state: !isLike
+                          });
+                          setLike(!isLike);
+                          console.log(isLike, "до");
+                        }}>
+                          {isLike ?
+                            <use style={{ fill: "#fff" }} href="img/icon/sprite.svg#icon-like"></use>
+                            :
+                            <use href="img/icon/sprite.svg#icon-like"></use>
+                          }
                         </S.BtnLikeSvg>
                       </S.BtnLike>
                       <S.BtnDislike>
