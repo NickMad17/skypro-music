@@ -27,8 +27,12 @@ export default function Login({ isRegMode = false }) {
     } else {
       try {
         setLoad(true);
-        const data = await getLogin({ email, password });
-        localStorage.setItem("user", JSON.stringify(data));
+        const userData = await getLogin({ email, password });
+        await localStorage.setItem("user", JSON.stringify({
+          ...JSON.parse(localStorage.getItem("user")),
+          userData
+        }));
+        const data = await JSON.parse(localStorage.getItem("user"))
         setUser(data);
         setLoad(false);
         navigate("/");
@@ -54,9 +58,12 @@ export default function Login({ isRegMode = false }) {
     } else {
       try {
         setLoad(true);
-        const data = await getRegister({ email, password });
-        console.log(data);
-        localStorage.setItem("user", JSON.stringify(data));
+        const userData = await getRegister({ email, password });
+        await localStorage.setItem("user", JSON.stringify({
+          ...JSON.parse(localStorage.getItem("user")),
+          userData
+        }));
+        const data = await JSON.parse(localStorage.getItem("user"))
         console.log(localStorage);
         setUser(data);
         setLoad(false);

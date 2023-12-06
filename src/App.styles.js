@@ -13,7 +13,7 @@ export const Container = styled.div`
   position: relative;
   background-color: #181818;
 `
-export const Main = styled.main` 
+export const MainBox = styled.main` 
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;

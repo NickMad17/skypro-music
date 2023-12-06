@@ -18,3 +18,8 @@ export const useShuffle = () => {
   const {shuffle} = useSelector(state => state.audioPlayer)
   return shuffle
 }
+
+export const useListName = () => {
+  const name = useSelector(state => state.changelist.name)
+  return name
+}

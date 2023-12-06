@@ -7,7 +7,7 @@ export const SidebarItem = styled.div`
   overflow: hidden;
 `;
 
-export const SidebarLink = styled.a`
+export const SidebarLink = styled.div`
   width: 100%;
   height: 100%;
 `;

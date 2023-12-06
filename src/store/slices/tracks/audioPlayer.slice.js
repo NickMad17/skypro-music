@@ -8,23 +8,25 @@ const initialState = {
   play: null
 };
 
-export const tracksSlice = createSlice({
+export const audioPlayerSlice = createSlice({
   name: "audioPlayer",
   initialState,
   reducers: {
     addTracks: ({ trackList, shuffle, randomList }, { payload: data }) => {
+      console.log(data);
       trackList.push(...data);
     },
 
     addRandomTracks: ({ shuffle, randomList }, { payload: data }) => {
-      for (let i = data.length - 1; i > 0; i--) {
-        let tmp = data[i];
+      const newData = [...data]
+      for (let i = newData.length - 1; i > 0; i--) {
+        let tmp = newData[i];
         let rnd = Math.floor(Math.random() * (i + 1));
 
-        data[i] = data[rnd];
-        data[rnd] = tmp;
+        newData[i] = newData[rnd];
+        newData[rnd] = tmp;
       }
-      randomList.push(...data);
+      randomList.push(...newData);
     },
 
     addTrackPlay: (state, { payload: trackId }) => {
@@ -37,10 +39,17 @@ export const tracksSlice = createSlice({
     nextTrack: (state) => {
 
       if (!state.shuffle) {
-        const end = state.trackList.at(-1).id;
-        const start = state.trackList.at(0).id;
-        const nextTrack = state.trackPlay + 1;
-        if (nextTrack <= end) {
+        const start = state.trackList.at(0).id;;
+        const end = state.trackList.length - 1;
+        const nextTrackIndex = state.trackList.length + 1;
+        let myIndex
+        state.trackList.forEach((track,index) => {
+          if (track.id === state.trackPlay ) {
+            myIndex = index + 1
+          }
+        });
+        if (myIndex <= end) {
+          const nextTrack = state.trackList.at(myIndex).id
           return {
             ...state,
             trackPlay: nextTrack
@@ -57,11 +66,11 @@ export const tracksSlice = createSlice({
         let myIndex
         state.randomList.forEach((track,index) => {
           if (track.id === state.trackPlay ) {
-            myIndex = index
+            myIndex = index + 1
           }
         });
         if (myIndex < lastInd){
-          const nextTrack = state.randomList.at(myIndex+1).id
+          const nextTrack = state.randomList.at(myIndex).id
           return {
             ...state,
             trackPlay: nextTrack
@@ -130,7 +139,7 @@ export const tracksSlice = createSlice({
         }
       }
     },
-    
+
     clear: (state) => {
       return {
         ...state,
@@ -144,4 +153,4 @@ export const tracksSlice = createSlice({
   }
 });
 
-export const { actions, reducer } = tracksSlice;
+export const { actions, reducer } = audioPlayerSlice;
