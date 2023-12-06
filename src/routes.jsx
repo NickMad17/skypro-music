@@ -17,10 +17,10 @@ export const AppRoutes = () => {
       <Route path="/register" element={<Login isRegMode={true} />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<PageLayout/>}>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main />} />S
+          <Route path="/category/:id" element={<Category />} />
           <Route path="/my-playlist" element={<MyPlayList/>}/>
         </Route>
-        <Route path="/category/:id" element={<Category />} />
       </Route>
     </Routes>
   );

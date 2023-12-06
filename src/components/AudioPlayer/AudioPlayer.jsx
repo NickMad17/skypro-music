@@ -215,11 +215,11 @@ const AudioPlayer = () => {
                           }
                         </S.BtnLikeSvg>
                       </S.BtnLike>
-                      <S.BtnDislike>
-                        <S.BtndislikeSvg alt="dislike">
-                          <use href="img/icon/sprite.svg#icon-dislike"></use>
-                        </S.BtndislikeSvg>
-                      </S.BtnDislike>
+                      {/*<S.BtnDislike>*/}
+                      {/*  <S.BtndislikeSvg alt="dislike">*/}
+                      {/*    <use href="img/icon/sprite.svg#icon-dislike"></use>*/}
+                      {/*  </S.BtndislikeSvg>*/}
+                      {/*</S.BtnDislike>*/}
                     </S.BtnDisAndLike>
                   </S.PlayerTrackPlay>
                 </S.BarPlayer>

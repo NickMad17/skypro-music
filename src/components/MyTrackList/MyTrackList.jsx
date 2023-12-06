@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import RenderMyTracks from "./RenderTracks/RenderMyTracks";
 import * as S from "./MyList.styles";
 
 const MyTrackList = () => {
+  const [search, setSearch] = useState("")
   return (
     <S.MainCenterBlock>
       <S.CenterBlockSearch>
@@ -13,10 +14,26 @@ const MyTrackList = () => {
           type="search"
           placeholder="Поиск"
           name="search"
+          onChange={(e) => setSearch(e.target.value)}
         />
       </S.CenterBlockSearch>
       <S.CenterBlockTitle>Мои треки</S.CenterBlockTitle>
       <S.CenterBlockContent>
+        {search
+          &&
+          <S.ContentBoxFilter>
+            <S.ContentFilterReset>Контекст:
+            </S.ContentFilterReset>
+            <S.ContentFilter onClick={
+              () => setSearch("")
+            }>
+              {search}
+              <S.ContentImgBox>
+                <S.ContentImg src="img/icon/x.svg" />
+              </S.ContentImgBox>
+            </S.ContentFilter>
+          </S.ContentBoxFilter>
+        }
         <S.ContentTitle>
           <S.PlayListTitleCol width={447}>Трек</S.PlayListTitleCol>
           <S.PlayListTitleCol width={321}>ИСПОЛНИТЕЛЬ</S.PlayListTitleCol>
@@ -27,7 +44,7 @@ const MyTrackList = () => {
             </S.PlayListTitleSvg>
           </S.PlayListTitleCol>
         </S.ContentTitle>
-        <RenderMyTracks />
+        <RenderMyTracks search={search} setSearch={setSearch}/>
       </S.CenterBlockContent>
     </S.MainCenterBlock>
   );

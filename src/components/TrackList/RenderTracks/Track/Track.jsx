@@ -15,7 +15,7 @@ const timeTrack = (time) => {
   return `${min}:${sec}`;
 };
 
-const Track = ({ allTracks, name, author, album, time, feat, id , stared_user}) => {
+const Track = ({ allTracks, name, author, album, time, feat, id , stared_user, setSearch}) => {
   const { addTrackPlay, addRandomTracks, addTracks, setPlaying } = useActions();
   const activeTrack = useTrackId();
   const pause = usePlayPause();
@@ -24,8 +24,8 @@ const Track = ({ allTracks, name, author, album, time, feat, id , stared_user}) 
 
 
   useEffect(() => {
-    stared_user.forEach(user => {
-      if(user.email === JSON.parse(localStorage.getItem("user")).userData.email){
+    stared_user?.forEach(user => {
+      if(user?.email === JSON.parse(localStorage.getItem("user"))?.userData?.email){
         setLike(true)
       }
     })
@@ -80,7 +80,9 @@ const Track = ({ allTracks, name, author, album, time, feat, id , stared_user}) 
           </S.TrackTitleText>
         </S.TrackTitle>
         <S.TrackAuthor>
-          <S.TrackAuthorLink href="http://">
+          <S.TrackAuthorLink onClick={() => {
+            setSearch(author)
+          }}>
             {author}
           </S.TrackAuthorLink>
         </S.TrackAuthor>

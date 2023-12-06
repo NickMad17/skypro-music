@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import RenderTracks from "./RenderTracks/RenderTracks";
-import TrackListNav from "./TrackListNav/TrackListNav";
-import * as S from "./TrackList.styles";
-import { ContentImg, ContentImgBox } from "./TrackList.styles";
+import CompilationRender from "./RenderTracks/CompilationRender";
+import * as S from "./CompilationList.styles";
 
-
-const TrackList = () => {
-  const [search, setSearch] = useState("");
+const CompilationList = () => {
+  const [search, setSearch] = useState("")
   return (
     <S.MainCenterBlock>
       <S.CenterBlockSearch>
@@ -20,22 +17,21 @@ const TrackList = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </S.CenterBlockSearch>
-      <S.CenterBlockTitle>Треки</S.CenterBlockTitle>
-      <TrackListNav />
+      <S.CenterBlockTitle>Мои треки</S.CenterBlockTitle>
       <S.CenterBlockContent>
         {search
           &&
           <S.ContentBoxFilter>
             <S.ContentFilterReset>Контекст:
             </S.ContentFilterReset>
-              <S.ContentFilter onClick={
-                () => setSearch("")
-              }>
-                {search}
-                <S.ContentImgBox>
-                  <S.ContentImg src="img/icon/x.svg" />
-                </S.ContentImgBox>
-              </S.ContentFilter>
+            <S.ContentFilter onClick={
+              () => setSearch("")
+            }>
+              {search}
+              <S.ContentImgBox>
+                <S.ContentImg src="img/icon/x.svg" />
+              </S.ContentImgBox>
+            </S.ContentFilter>
           </S.ContentBoxFilter>
         }
         <S.ContentTitle>
@@ -48,10 +44,10 @@ const TrackList = () => {
             </S.PlayListTitleSvg>
           </S.PlayListTitleCol>
         </S.ContentTitle>
-        <RenderTracks search={search} setSearch={setSearch} />
+        <CompilationRender search={search} setSearch={setSearch}/>
       </S.CenterBlockContent>
     </S.MainCenterBlock>
   );
 };
 
-export default TrackList;
+export default CompilationList;

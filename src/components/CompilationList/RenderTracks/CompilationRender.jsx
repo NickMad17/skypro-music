@@ -1,18 +1,17 @@
-import MyTrack from "./Track/MyTrack";
-import * as S from "./RenderMyTracks.styles";
+import * as S from "./CompilationRender.styles";
 import SceletonTrack from "../../Sceleton/SceletonTrack";
 import { useGetMyTracksQuery } from "../../../store/api/myTracks.api";
+import Track from "../../TrackList/RenderTracks/Track/Track";
+import { useParams } from "react-router-dom";
 
-const RenderMyTracks = ({search, setSearch}) => {
+const CompilationRender = ({search, setSearch}) => {
+  const params = useParams();
+
+
   const { data, isLoading, error } = useGetMyTracksQuery();
 
 
   !isLoading && localStorage.setItem("allTracks", JSON.stringify(data));
-
-  if (data?.length === 0) {
-    return <S.Label>Тут пока пусто)</S.Label>
-  }
-
 
 
   return (
@@ -40,7 +39,7 @@ const RenderMyTracks = ({search, setSearch}) => {
 
           if(!search){
             return (
-              <MyTrack
+              <Track
                 allTracks={data}
                 key={track.id}
                 id={track.id}
@@ -57,7 +56,7 @@ const RenderMyTracks = ({search, setSearch}) => {
 
           if (track.name.toLowerCase().startsWith(search.toLowerCase()) || track.author.toLowerCase().startsWith(search.toLowerCase())){
             return (
-              <MyTrack
+              <Track
                 allTracks={data}
                 key={track.id}
                 id={track.id}
@@ -78,6 +77,6 @@ const RenderMyTracks = ({search, setSearch}) => {
   );
 };
 
-export default RenderMyTracks;
+export default CompilationRender;
 
 

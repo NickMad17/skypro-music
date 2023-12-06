@@ -97,6 +97,53 @@ export const CenterBlockContent = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
 `;
+
+export const ContentBoxFilter = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`
+
+export const ContentFilterReset = styled.p`
+  font-size: 17px;
+  margin-bottom: 30px;
+  color: rgba(105, 104, 104, 0.74);
+`
+
+export const ContentFilter = styled.button`
+  position: relative;
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 30px;
+  background: #ffffff;
+  color: rgba(105, 104, 104, 0.9);
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: 5px;
+  transition: 0.3s;
+  display: flex;
+
+  &:hover {
+    color: red;
+    border-color: red;
+    background: transparent;
+    cursor: pointer;
+  }
+`
+
+export const ContentImgBox = styled.div`
+  width: 20px;
+  height: 20px;
+`
+
+export const ContentImg = styled.img`
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+`
+
 export const ContentTitle = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;

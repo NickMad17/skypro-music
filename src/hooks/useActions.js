@@ -1,12 +1,12 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { actions as trackAction} from "../store/slices/tracks/audioPlayer.slice";
-import { actions as listAction} from "../store/slices/tracks/TrackListName.slice";
+import { actions as FiltersActions} from "../store/slices/tracks/Filters";
 import { useDispatch } from "react-redux";
 import { useMemo } from "react";
 
 const rootActions = {
   ...trackAction,
-  ...listAction
+  ...FiltersActions
 }
 export const useActions = () => {
   const dispatch = useDispatch()
