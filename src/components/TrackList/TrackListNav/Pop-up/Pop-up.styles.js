@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const PopUp = styled.div`
+  z-index: 300;
   position: absolute ;
   top: 50px;
   left: ${({left}) => `${left}px`};

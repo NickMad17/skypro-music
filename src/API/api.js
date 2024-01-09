@@ -9,7 +9,7 @@ export const gets = {
     login: "https://skypro-music-api.skyeng.tech/user/login/",
     register: "https://skypro-music-api.skyeng.tech/user/signup/",
     getToken: "https://skypro-music-api.skyeng.tech/user/token/",
-    getRefresh: "https://skypro-music-api.skyeng.tech/user/token/refresh"
+    getRefresh: "https://skypro-music-api.skyeng.tech/user/token/refresh/"
 
   }
 };

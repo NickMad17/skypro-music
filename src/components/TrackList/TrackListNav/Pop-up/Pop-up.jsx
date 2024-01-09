@@ -1,10 +1,16 @@
 import React from "react";
 import * as S from "./Pop-up.styles";
 import { useGetAllTracksQuery } from "../../../../store/api/myTracks.api";
+import { useActions } from "../../../../hooks/useActions";
+
+const handleChange = (filter, value) => {
+  filter(value);
+};
+
+function PopUp({ name, setBtnState }) {
+  const { changeFilter } = useActions();
 
 
-
-function PopUp({ name }) {
   const { data, error } = useGetAllTracksQuery();
 
   const newDataDate = data?.map(track => {
@@ -28,7 +34,7 @@ function PopUp({ name }) {
   const dataGenre = [...setGenre];
   if (error) {
     return (
-      <S.PopUp left={name === "button-author" ? 100: name === "button-year" ? 250 : name === "button-genre" ? 400 : 0
+      <S.PopUp left={name === "button-author" ? 100 : name === "button-year" ? 250 : name === "button-genre" ? 400 : 0
       }>
         <p style={{ color: "red" }}>{error.error}</p>
       </S.PopUp>
@@ -40,7 +46,10 @@ function PopUp({ name }) {
       <S.PopUp left={100}>
         <S.PopUpContainer>
           {authorData.map((author, index) => {
-            return author && <S.PopUpText key={index}>{author}</S.PopUpText>;
+            return author && <S.PopUpText key={index} onClick={() => {
+              handleChange(changeFilter, author);
+              setBtnState("");
+            }}>{author}</S.PopUpText>;
           })}
         </S.PopUpContainer>
       </S.PopUp>
@@ -50,7 +59,10 @@ function PopUp({ name }) {
       <S.PopUp left={250}>
         <S.PopUpContainer>
           {dataDate.map((date, id) => {
-            return date && <S.PopUpText key={id}>{date}</S.PopUpText>;
+            return date && <S.PopUpText key={id} onClick={() => {
+              handleChange(changeFilter, date);
+              setBtnState("");
+            }} >{date}</S.PopUpText>;
           })}
         </S.PopUpContainer>
       </S.PopUp>
@@ -60,7 +72,10 @@ function PopUp({ name }) {
       <S.PopUp left={400}>
         <S.PopUpContainer>
           {dataGenre.map((gemre, id) => {
-            return gemre && <S.PopUpText key={id}>{gemre}</S.PopUpText>;
+            return gemre && <S.PopUpText key={id} onClick={() => {
+              handleChange(changeFilter, gemre);
+              setBtnState("");
+            }} >{gemre}</S.PopUpText>;
           })}
         </S.PopUpContainer>
       </S.PopUp>
